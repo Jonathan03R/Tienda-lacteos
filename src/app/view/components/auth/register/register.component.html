@@ -1,0 +1,81 @@
+<section class="vh-100 text-white d-flex flex-column align-items-center justify-content-center"
+    style="border: 2px solid red;">
+    <div class="container-fluid pt-2 h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form>
+                    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                        <p class="lead fw-normal mb-0 me-3">Registrate con</p>
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init
+                            class="btn btn-success btn-floating mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init
+                            class="btn btn-success btn-floating mx-1">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init
+                            class="btn btn-success btn-floating mx-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                    </div>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                    </div>
+                    <div class="row form-outline mb-4">
+                        <div data-mdb-input-init class=" col-md-6">
+                            <input type="text" formControlName="names" class="form-control form-control-lg"  placeholder="Nombres" id="validationDefault01"
+                                required>
+
+                        </div>
+                        <div data-mdb-input-init class="col-md-6">
+
+                            <input type="text" formControlName="lastNames"  placeholder="Apellidos" class="form-control form-control-lg" id="validationDefault02"
+                                required>
+            
+                        </div>
+                    </div>
+
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                            placeholder="Introduzca correo electrónico" />
+       
+                    </div>
+
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="password" id="form3Example4" class="form-control form-control-lg"
+                            placeholder="Introducir una contraseña" />
+                        <!-- <label class="form-label" for="form3Example4">Contraseña</label> -->
+                    </div>
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="password" id="form3Example5" class="form-control form-control-lg"
+                            placeholder="confirmar contraseña" />
+                    </div>
+
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init
+                            class="boton-iniciar">Registrar</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">¿Ya tienes una cuenta? <a routerLink="/login"
+                                class="link-danger"> Logearse</a></p>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col-md-9 col-lg-6 col-xl-5 d-none d-lg-block">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Sample image">
+            </div>
+        </div>
+    </div>
+
+
+</section>

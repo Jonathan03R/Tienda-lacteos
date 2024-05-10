@@ -1,0 +1,66 @@
+<div class="  nav-jona">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg  navbar-dark " style="border: 2px solid red;">
+        <div class="container">
+            <div class="d-flex">
+                <!-- botones -->
+                <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- logo -->
+                <div class="logo" (click)="redirectToPantallaCarga() " style="cursor: pointer;">
+                    <img src="../../../../assets/logo.png" alt="" style="height: 50px;" class="me-3">
+                    <a class="navbar-brand text-uppercase fs-3 d-none d-lg-block">san Jose</a>
+                </div>
+            </div>
+
+            <!-- sidebar -->
+            <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <!-- sideBar Header -->
+                <div class="offcanvas-header text-white border-bottom">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">San Jose de Porcón</h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <!-- Sidebar body -->
+                <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+                    <ul class="navbar-nav justify-content-lg-end flex-grow-1 pe-3">
+                        @for (item of menuItems; track $index) {
+                        <li class=" mx-2 my-3 my-lg-0" style="cursor: pointer;">
+                            <a [routerLink]="item.path" routerLinkActive="active">
+                                {{item.title}}</a>
+                        </li>
+                        }
+                        <!-- <button class="btn-Contactos text-uppercase mx-lg-5 ">INICIAR SESIÓN</button> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="iconos">
+                <a><fa-icon [icon]="faHeart"></fa-icon> </a>
+                <a routerLink="/login" ><fa-icon [icon]="faUser"></fa-icon></a>
+                <!-- shop -->
+                <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
+                    aria-controls="offcanvasShop"><fa-icon [icon]="faCartShopping"></fa-icon></a>
+            </div>
+
+         
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasShop"
+    aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Mi Carrito </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            En este espacio se mostrarán todas las compras que los usuarios hayan agregado al carrito de compras. 
+            Es decir, cada vez que un usuario añada un nuevo producto al carrito, podrá visualizarlo aquí.
+        </div>
+    </div>
+</div>
+</div>

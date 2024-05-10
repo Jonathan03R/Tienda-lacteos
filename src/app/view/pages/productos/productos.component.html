@@ -1,0 +1,54 @@
+<Section class="productos">
+    <div class=" container">
+        <button (click)="this.cargarProductos()">hol</button>
+        
+        <div class="list-product">
+           @for (product of productos; track $index) {
+               <div class="box"  >
+                   <img src="https://quesoselherreño.es/wp-content/uploads/2023/06/Queso-el-Herreno-Portada-1.png"
+                       alt="producto">
+                   <p>{{ product.Productonombre }}</p>
+                   <p *ngIf="product">{{ product | json }}</p>
+                   <div class="d-flex align-items-center justify-content-center">
+                       <div class="d-flex align-items-center">
+                           <div class="iconos">
+                               <a><fa-icon class="corazon" [icon]="faHeart"></fa-icon></a>
+                           </div>
+                           <!-- <div class="wrapper ">
+                               <span class="minus">-</span>
+                               <span class="num">01</span>
+                               <span class="plus">+</span>
+                           </div> -->
+                           <div class="number-input">
+                               <button (click)="decrement()" class="minus">+</button>
+                               <input class="quantity" [min]="minQuantity" [max]="maxQuantity" name="quantity"
+                                   [(ngModel)]="quantity" type="number" (input)="validateInput()">
+                               <button (click)="increment()" class="plus">-</button>
+                           </div>
+                           <div class="iconos">
+                               <a><fa-icon [icon]="faCartShopping"></fa-icon></a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           }
+            
+        </div>
+    </div>
+
+    <div class = "User">
+        <ul>
+            @for (user of _productosService.users(); track user.UsuarioCodigo) {
+                <li>
+                    <p>{{user.UsuarioCodigo}}</p>
+                    <p>{{user.Usuariocorreo_electronico}}</p>
+                    <p>{{user.UsurioNombre}}</p>
+                </li>
+
+            }@empty {
+                <h2>cargando data</h2>
+            }
+
+        </ul>
+    </div>
+</Section>

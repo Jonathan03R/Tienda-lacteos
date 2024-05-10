@@ -1,0 +1,135 @@
+.productos {
+  padding-top: 90px;
+  color: #fff;
+  min-height: 100vh;
+}
+/* .wrapper {
+  height: 30px;
+  min-width: 100px;
+  max-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0 , 0.2);
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.wrapper span {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wrapper span.num{
+  font-size: 20px;
+  border-right: 2px solid rgba(0, 0, 0 , 0.2);
+  border-left: 2px solid rgba(0, 0, 0 , 0.2);
+  pointer-events: none;
+} */
+
+
+
+.list-product {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid de columnas autoajustables */
+  grid-gap: 30px; /* Margen entre las columnas */
+}
+
+.list-product .box {
+  border: 2px solid red;
+  padding: 20px;
+}
+
+.list-product .box img {
+  height: 180px;
+}
+
+.iconos a {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 25px;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+
+.iconos .corazon {
+  color: red;
+}
+
+
+/* imput */
+
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input {
+  border: 2px solid #ddd;
+  display: inline-flex;
+  border-radius: 25px;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+  
+}
+
+.quantity:focus {
+  outline: none; /* Quita el borde de enfoque */
+}
+
+.number-input button {
+  outline:none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+/* .number-input button:after {
+  color: #fff;
+  display: inline-block;
+  position: absolute;
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900;
+  content: '';
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(0deg);
+} */
+
+.number-input input[type=number] {
+  font-family: sans-serif;
+  max-width: 3rem;
+  padding: .3rem;
+  border: solid #ddd;
+  border-width: 0 2px;
+  font-size: 20px;
+  height: 2rem;
+  font-weight: bold;
+  text-align: center;
+}

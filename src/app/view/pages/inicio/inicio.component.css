@@ -1,0 +1,38 @@
+/* .Inicio {
+  padding-top: 70px;
+} */
+
+.box-inicio {
+  padding-top: 70px;
+}
+
+.imagen-empresa{
+  height: 350px;
+}
+
+.title {
+ width: 80%;
+}
+
+.desciption {
+  width: 70%;
+}
+
+.button-custom{
+  margin-top: 8px;
+  font-weight: 800;
+  border-radius: 15px;
+  width: 180px;
+  background-image: linear-gradient(to right,#0aa850, #80c341);
+  border: none;
+  color: #fff;
+  height: 40px;
+  transition: all 0.2s;
+}
+
+
+.button-custom:hover {
+  background-image: linear-gradient(to right,#80c341, #0aa850);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+}

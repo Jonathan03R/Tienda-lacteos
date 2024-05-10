@@ -1,0 +1,138 @@
+.logo {
+  align-items: center;
+  display: flex;
+}
+
+.logo .navbar-brand {
+  font-size: 20px;
+  align-items: center;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+
+
+/* .offcanvas-title {
+  text-shadow: -3px 2px 13px rgba(255, 255, 255, 0.5);
+} */
+
+
+
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar-nav li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.5s;
+}
+
+.navbar-nav li a:hover {
+  color: #009444;
+}
+
+.navbar-nav li a.active {
+  color: #EEFB03;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.5s;
+}
+
+.btn-Contactos{ 
+  background-image: linear-gradient(to right,#0aa850, #80c341);
+  border-radius: 15px;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  width: 150px;
+  height: 35px;
+  transition: all 0.5s;
+}
+
+.btn-Contactos:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.5);
+}
+
+
+.dropdown-toggle:not(:focus) {
+  outline: 0;
+}
+
+.iconos{
+  margin-left: 45px;
+}
+
+.iconos a {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 25px;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.iconos a:hover {
+  color: #0aa850;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dropdown-menu.text-small {
+  animation: fadeIn 0.5s;
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+    background-color: rgb(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  
+
+  .navbar-nav {
+    align-items: start;
+
+  }
+
+  .navbar-nav li{
+    border-left: 3px solid #EEFB03;
+    
+    padding-left: 10px;
+  }
+
+  .navbar-nav li a {
+    text-decoration: none;
+    font-size: 20px;
+    
+  }
+  
+
+  .navbar-nav li a.active {
+    color: #EEFB03;
+    text-shadow: -3px 2px 3px rgba(255, 255, 255, 0.5);
+    
+  }
+
+  .btn-Contactos{
+    width: 100%;
+    margin-top: 70px;
+    height: 40px;
+  }
+
+
+
+
+
+}
