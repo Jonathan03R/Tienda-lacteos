@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { ProductosService } from './controller/service/productos.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,11 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'frontend-tiendaLacteos';
+export class AppComponent implements OnInit{
+  _productosService = inject(ProductosService)
+
+  ngOnInit(): void {
+    this._productosService.actualizarProductos();
+  }
+
 }

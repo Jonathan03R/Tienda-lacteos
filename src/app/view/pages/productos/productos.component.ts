@@ -25,54 +25,47 @@ export default class ProductosComponent implements OnInit{
 
   public _productosService = inject(ProductosService)
 
-  product$ = this._productosService.getUser();
-
   minQuantity: number = 1;
-  maxQuantity: number = 5;
+  // maxQuantity: number = 5;
   quantity: number = 1;
+  
   a: number = 1;
 
-  productos: any[] = [];
+  productos: Productos[] = [];
 
 
 
   ngOnInit(): void {
-    this.cargarProductos()
+    this._productosService.actualizarProductos();
+    this.productos = this._productosService.getProductos()
   }
-  cargarProductos() {
-    this._productosService.getProducts().subscribe(
-      (data) => {
-        this.productos = [...data]; // Hacer una copia de los datos antes de asignarlos
-      },
-      (error) => {
-        console.error('Error al cargar productos:', error);
-      }
-    );
-  }
-  
+
+
 
   faCartShopping = faCartShopping;
   faHeart = faHeart;
 
-  increment() {
-    if (this.quantity < this.maxQuantity) {
-      this.quantity++;
-      this.validateInput();
+  increment(producto: Productos) {
+    console.log('Incrementando producto:', producto);
+    if (producto.quantity! < producto.Productocantidad_disponible) {
+      producto.quantity!++;
+      this.validateInput(producto);
     }
   }
 
-  decrement() {
-    if (this.quantity > this.minQuantity) {
-      this.quantity--;
-      this.validateInput();
+  decrement(producto: Productos) {
+    
+    if ( producto.quantity! > this.minQuantity) {
+      producto.quantity!--;
+      this.validateInput(producto);
     }
   }
 
-  validateInput() {
-    if (this.quantity < this.minQuantity) {
-      this.quantity = this.minQuantity;
-    } else if (this.quantity > this.maxQuantity) {
-      this.quantity = this.maxQuantity;
+  validateInput(producto: Productos) {
+    if (producto.quantity! < this.minQuantity) {
+      producto.quantity! = this.minQuantity;
+    } else if (producto.quantity! > producto.Productocantidad_disponible) {
+      producto.quantity! = producto.Productocantidad_disponible;
     }
   }
   

@@ -42,8 +42,16 @@
 }
 
 .list-product .box {
-  border: 2px solid red;
+  background-color: #151515;
+  border-radius: 20px;
   padding: 20px;
+  transition: all 0.2s;
+}
+
+.list-product .box:hover{
+  transform: scale(1.007);
+  box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.505);
+
 }
 
 .list-product .box img {

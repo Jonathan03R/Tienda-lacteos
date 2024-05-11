@@ -6,45 +6,34 @@ import { Observable, delay } from 'rxjs';
 import { User, userResponde } from '../../model/interface/user';
 
 
-interface State {
-
-  users: User[]
-
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
+  private productos: Productos[] = [];
+
   private http = inject(HttpClient);
 
-  constructor(){
-    console.log('cargando data')
 
+  cargarProductos(): Observable<Productos[]> {
+    return this.http.get<Productos[]>(`${BASE_URL}/products/productos`);
   }
 
-
-
-  #state = signal<State>({
-    users: [],
-  })
-
-
-  public users = computed (()=> this.#state().users);
-
-  getProducts(){
-    return this.http.get<any>(`${BASE_URL}/products/productos`)
+  getProductos(): Productos[] {
+    return this.productos; // Método para obtener los productos almacenados
   }
-  getUser() {
-    return this.http.get<userResponde>(`${BASE_URL}/user/usuarios`)
 
-      .subscribe(res => {
-        
-        this.#state.set({
-          users: res.data
-        })
-      });
+  actualizarProductos(): void {
+    this.cargarProductos().subscribe(
+      (data) => {
+        this.productos = data.map(producto => ({ ...producto, quantity: 1 }));
+      },
+      (error) => {
+        console.error('Error al cargar productos:', error);
+      }
+    );
   }
+
 
 }

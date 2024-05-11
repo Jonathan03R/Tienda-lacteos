@@ -1,14 +1,13 @@
 <Section class="productos">
     <div class=" container">
-        <button (click)="this.cargarProductos()">hol</button>
         
         <div class="list-product">
-           @for (product of productos; track $index) {
+           @for (product of productos; track product.ProductoCodigo) {
                <div class="box"  >
                    <img src="https://quesoselherreño.es/wp-content/uploads/2023/06/Queso-el-Herreno-Portada-1.png"
                        alt="producto">
                    <p>{{ product.Productonombre }}</p>
-                   <p *ngIf="product">{{ product | json }}</p>
+                   <p>{{ product.Productodescripcion }}</p>
                    <div class="d-flex align-items-center justify-content-center">
                        <div class="d-flex align-items-center">
                            <div class="iconos">
@@ -20,10 +19,10 @@
                                <span class="plus">+</span>
                            </div> -->
                            <div class="number-input">
-                               <button (click)="decrement()" class="minus">+</button>
-                               <input class="quantity" [min]="minQuantity" [max]="maxQuantity" name="quantity"
-                                   [(ngModel)]="quantity" type="number" (input)="validateInput()">
-                               <button (click)="increment()" class="plus">-</button>
+                               <button (click)="decrement(product)" class="minus">+</button>
+                               <input class="quantity" [min]="minQuantity" [max]="product.Productocantidad_disponible" name="quantity"
+                                   [(ngModel)]="product.quantity" type="number" (input)="validateInput(product)">
+                               <button (click)="increment(product)" class="plus">-</button>
                            </div>
                            <div class="iconos">
                                <a><fa-icon [icon]="faCartShopping"></fa-icon></a>
@@ -36,19 +35,4 @@
         </div>
     </div>
 
-    <div class = "User">
-        <ul>
-            @for (user of _productosService.users(); track user.UsuarioCodigo) {
-                <li>
-                    <p>{{user.UsuarioCodigo}}</p>
-                    <p>{{user.Usuariocorreo_electronico}}</p>
-                    <p>{{user.UsurioNombre}}</p>
-                </li>
-
-            }@empty {
-                <h2>cargando data</h2>
-            }
-
-        </ul>
-    </div>
 </Section>

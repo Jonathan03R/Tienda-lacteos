@@ -6,4 +6,5 @@ export interface Productos {
     Productocantidad_disponible: number;
     Productofoto: string;
     ProductoEmpresaCodigo: number;
+    quantity?: number;
 }
