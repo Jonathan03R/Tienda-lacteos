@@ -1,2 +1,10 @@
 
-.PiePagina {height: 300px;}
+.pie
+{
+    border: 2px solid red;
+}
+.imagenGato {
+    height: 100px;
+    border-radius: 25px;
+
+}
