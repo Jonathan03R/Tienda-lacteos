@@ -8,6 +8,9 @@
                        alt="producto">
                    <p>{{ product.Productonombre }}</p>
                    <p>{{ product.Productodescripcion }}</p>
+                   <p>Cantidad disponible: {{ product.Productocantidad_disponible }}</p>
+                   <p>Precio: {{product.Productoprecio}}</p>
+                   <p>Precio total: {{ product.Productoprecio * product.quantity! }}</p>
                    <div class="d-flex align-items-center justify-content-center">
                        <div class="d-flex align-items-center">
                            <div class="iconos">
@@ -24,8 +27,9 @@
                                    [(ngModel)]="product.quantity" type="number" (input)="validateInput(product)">
                                <button (click)="increment(product)" class="plus">-</button>
                            </div>
+                           
                            <div class="iconos">
-                               <a><fa-icon [icon]="faCartShopping"></fa-icon></a>
+                               <a (click)="agregarAlCarrito(product)" ><fa-icon [icon]="faCartShopping"></fa-icon></a>
                            </div>
                        </div>
                    </div>

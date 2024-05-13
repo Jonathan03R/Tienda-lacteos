@@ -4,6 +4,8 @@ import { routes } from '../../../app.routes';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPhone, faUser, faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { CarritoServiceService } from '../../../controller/service/carrito/CarritoService.service';
+import { Productos } from '../../../model/interface/Productos';
 
 
 @Component({
@@ -17,15 +19,26 @@ import { faPhone, faUser, faCartShopping, faHeart } from '@fortawesome/free-soli
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css',
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
+
+  _carritoService = inject(CarritoServiceService);
+
   //ICONOS 
   faUser = faUser;
   faCartShopping = faCartShopping;
   faHeart = faHeart;
 
-
+  productosCarrito: Productos[] = [];
   dataUser: any;
   spinner: boolean = true;
+
+  ngOnInit(): void {
+    this._carritoService.obtenerCarrito().subscribe(carrito => {
+      this.productosCarrito = carrito;
+    })
+  }
+
+
   public menuItems = routes
     .map(routes => routes.children ?? [])
     .flat()

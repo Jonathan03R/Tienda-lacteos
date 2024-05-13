@@ -1,6 +1,6 @@
 <div class="  nav-jona">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg  navbar-dark " >
+    <nav class="navbar navbar-expand-lg  navbar-dark ">
         <div class="container">
             <div class="d-flex">
                 <!-- botones -->
@@ -40,27 +40,34 @@
             </div>
             <div class="iconos">
                 <a><fa-icon [icon]="faHeart"></fa-icon> </a>
-                <a routerLink="/login" ><fa-icon [icon]="faUser"></fa-icon></a>
+                <a routerLink="/login"><fa-icon [icon]="faUser"></fa-icon></a>
                 <!-- shop -->
                 <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
                     aria-controls="offcanvasShop"><fa-icon [icon]="faCartShopping"></fa-icon></a>
             </div>
 
-         
+
         </div>
     </nav>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasShop"
-    aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Mi Carrito </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div>
-            En este espacio se mostrarán todas las compras que los usuarios hayan agregado al carrito de compras. 
-            Es decir, cada vez que un usuario añada un nuevo producto al carrito, podrá visualizarlo aquí.
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasShop" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Mi Carrito </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            @for (producto of productosCarrito; track $index) {
+            <div>
+                <h5>{{producto.Productonombre}}</h5>
+                <p>Cantidad: {{ producto.quantity }}</p>
+                <p>Precio Total: {{ producto.Productoprecio * producto.quantity! }}</p>
+                <button (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)">Eliminar</button>
+            </div>
+            }
+        </div>
+
+        <div class="offcanvas-footer border-top">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Cantidad</h5>
         </div>
     </div>
-</div>
 </div>

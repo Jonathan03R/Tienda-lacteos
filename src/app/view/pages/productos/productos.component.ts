@@ -6,6 +6,7 @@ import { faCartShopping, faHeart, } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { CarritoServiceService } from '../../../controller/service/carrito/CarritoService.service';
 
 @Component({
   selector: 'app-productos',
@@ -25,6 +26,8 @@ export default class ProductosComponent implements OnInit{
 
   public _productosService = inject(ProductosService)
 
+  _carritoService = inject(CarritoServiceService)
+
   minQuantity: number = 1;
   // maxQuantity: number = 5;
   quantity: number = 1;
@@ -38,6 +41,11 @@ export default class ProductosComponent implements OnInit{
   ngOnInit(): void {
     this._productosService.actualizarProductos();
     this.productos = this._productosService.getProductos()
+  }
+
+
+  agregarAlCarrito(producto: Productos) {
+    this._carritoService.agregarAlCarrito(producto);
   }
 
 
