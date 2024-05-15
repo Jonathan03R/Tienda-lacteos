@@ -3,7 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { routes } from '../../../app.routes';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPhone, faUser, faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faPhone, faUser, faCartShopping, faHeart, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { CarritoServiceService } from '../../../controller/service/carrito/CarritoService.service';
 import { Productos } from '../../../model/interface/Productos';
 
@@ -27,7 +27,8 @@ export class NavBarComponent implements OnInit {
   faUser = faUser;
   faCartShopping = faCartShopping;
   faHeart = faHeart;
-
+  faTrash = faTrash;
+ 
   productosCarrito: Productos[] = [];
   dataUser: any;
   spinner: boolean = true;
@@ -50,6 +51,15 @@ export class NavBarComponent implements OnInit {
 
   redirectToPantallaCarga() {
     this._router.navigate(['/cargando']);
+  }
+
+
+  calcularTotal(): string  {
+    let total = 0;
+    for (const producto of this.productosCarrito) {
+      total += producto.Productoprecio * producto.quantity!;
+    }
+    return total.toFixed(2);;
   }
 
 }

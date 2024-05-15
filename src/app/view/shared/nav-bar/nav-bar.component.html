@@ -57,17 +57,29 @@
         </div>
         <div class="offcanvas-body">
             @for (producto of productosCarrito; track $index) {
-            <div>
-                <h5>{{producto.Productonombre}}</h5>
-                <p>Cantidad: {{ producto.quantity }}</p>
-                <p>Precio Total: {{ producto.Productoprecio * producto.quantity! }}</p>
-                <button (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)">Eliminar</button>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>{{producto.Productonombre}}</h5>
+                    <p>{{producto.Productodescripcion}}</p>
+                    <div class="d-flex align-items-center price">
+                        <p class="precioPro"> S/. {{ producto.Productoprecio }}</p>
+                        <p class="fw-bold">Cantidad: {{ producto.quantity }}</p>
+                    </div>
+                    <p>Sub Total: S/.{{ producto.Productoprecio * producto.quantity! }}</p>
+                </div>
+                
+                <button class="btn-delete" (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)"><fa-icon
+                    [icon]="faTrash"></fa-icon></button>
             </div>
+            <hr>
             }
         </div>
 
-        <div class="offcanvas-footer border-top">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Cantidad</h5>
+        <div class="offcanvas-footer border-top " style="padding-left: 25px;">
+            <div class="d-flex  align-items-center ">
+                <h5 style="margin-right: 50px;" class="offcanvas-title" id="offcanvasExampleLabel">  Total:      </h5>
+                <h5 style="margin-bottom: 0;">S/. {{calcularTotal()}} </h5>
+            </div>
         </div>
     </div>
 </div>

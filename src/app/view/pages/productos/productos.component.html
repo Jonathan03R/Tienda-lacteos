@@ -14,22 +14,19 @@
                    <div class="d-flex align-items-center justify-content-center">
                        <div class="d-flex align-items-center">
                            <div class="iconos">
-                               <a><fa-icon class="corazon" [icon]="faHeart"></fa-icon></a>
+                               <a class="btn-corazon btn-productos"><fa-icon class="corazon" [icon]="faHeart"></fa-icon></a>
                            </div>
-                           <!-- <div class="wrapper ">
-                               <span class="minus">-</span>
-                               <span class="num">01</span>
-                               <span class="plus">+</span>
-                           </div> -->
                            <div class="number-input">
-                               <button (click)="decrement(product)" class="minus">+</button>
+                               <button (click)="decrement(product)" class="minus">-</button>
                                <input class="quantity" [min]="minQuantity" [max]="product.Productocantidad_disponible" name="quantity"
                                    [(ngModel)]="product.quantity" type="number" (input)="validateInput(product)">
-                               <button (click)="increment(product)" class="plus">-</button>
+                               <button (click)="increment(product)" class="plus">+</button>
                            </div>
                            
                            <div class="iconos">
-                               <a (click)="agregarAlCarrito(product)" ><fa-icon [icon]="faCartShopping"></fa-icon></a>
+                                <a class="btn-carrito btn-productos" (click)="agregarAlCarrito(product)" ><fa-icon
+                                [icon]="faCartShopping"></fa-icon></a>
+
                            </div>
                        </div>
                    </div>

@@ -59,17 +59,34 @@
 }
 
 .iconos a {
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 25px;
-  color: #fff;
-  transition: all 0.2s;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #eee;
+  cursor: pointer;
+  margin-right: 30px; 
+  margin-left: 30px;
+  transition: all .1s;
+
 }
+.iconos .btn-carrito :active {
+  /* transform: scale(1.2); */
+  color:#0aa850;
+}
+
 
 
 .iconos .corazon {
   color: red;
 }
+
+
+
 
 
 /* imput */
