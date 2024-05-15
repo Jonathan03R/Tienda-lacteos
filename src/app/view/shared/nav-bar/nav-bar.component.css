@@ -10,7 +10,7 @@
   font-family: 'Poppins', sans-serif;
   
 }
-
+            
 
 
 /* .offcanvas-title {
@@ -79,6 +79,19 @@
   color: #0aa850;
 }
 
+
+.price .precioPro{
+  margin-right:25px ;
+  color: #0aa850;
+  font-size: 35px;
+}
+
+
+.btn-delete{
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -132,7 +145,7 @@
   }
 
 
-
+  
 
 
 }

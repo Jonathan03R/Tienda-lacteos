@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from '../../shared/nav-bar/nav-bar.component';
 import { ProductosService } from '../../../controller/service/productos.service';
+import { FlooterComponent } from '../../shared/Flooter/Flooter.component';
 
 @Component({
   selector: 'app-principal',
@@ -10,7 +11,8 @@ import { ProductosService } from '../../../controller/service/productos.service'
   imports: [
     CommonModule,
     RouterModule,
-    NavBarComponent
+    NavBarComponent,
+    FlooterComponent
   ],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css',

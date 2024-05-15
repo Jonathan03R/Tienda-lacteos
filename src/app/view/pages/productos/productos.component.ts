@@ -46,6 +46,7 @@ export default class ProductosComponent implements OnInit{
 
   agregarAlCarrito(producto: Productos) {
     this._carritoService.agregarAlCarrito(producto);
+    producto.quantity = 1;
   }
 
 
@@ -63,15 +64,15 @@ export default class ProductosComponent implements OnInit{
 
   decrement(producto: Productos) {
     
-    if ( producto.quantity! > this.minQuantity) {
+    if ( producto.quantity! > 1) {
       producto.quantity!--;
       this.validateInput(producto);
     }
   }
 
   validateInput(producto: Productos) {
-    if (producto.quantity! < this.minQuantity) {
-      producto.quantity! = this.minQuantity;
+    if (producto.quantity! < 1) {
+      producto.quantity! = 1;
     } else if (producto.quantity! > producto.Productocantidad_disponible) {
       producto.quantity! = producto.Productocantidad_disponible;
     }
