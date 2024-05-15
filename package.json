@@ -1,5 +1,5 @@
 {
-  "name": "frontend-tienda-lacteos",
+  "name": "tienda",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -15,6 +15,7 @@
     "@angular/common": "^17.0.0",
     "@angular/compiler": "^17.0.0",
     "@angular/core": "^17.0.0",
+    "@angular/fire": "^17.1.0",
     "@angular/forms": "^17.0.0",
     "@angular/material": "^17.3.8",
     "@angular/platform-browser": "^17.0.0",

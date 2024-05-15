@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend-tiendaLacteos": {
+    "frontend-tiendalacteos": {
       "projectType": "application",
       "schematics": {},
       "root": "",
