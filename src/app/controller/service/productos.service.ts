@@ -3,7 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { BASE_URL } from '../../app.config';
 import { Productos } from '../../model/interface/Productos';
 import { Observable, delay } from 'rxjs';
-import { User, userResponde } from '../../model/interface/user';
+import { User } from '../../model/interface/user';
 
 
 @Injectable({
