@@ -1,4 +1,4 @@
-<section class="vh-100 text-white d-flex flex-column align-items-center justify-content-center" style="border: 2px solid red;">
+<section class="vh-100 text-white d-flex flex-column align-items-center justify-content-center">
     <div class="container-fluid pt-2 h-custom">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-9 col-lg-6 col-xl-5">
@@ -9,7 +9,7 @@
           <form [formGroup]="formLogin" (ngSubmit)="login()">
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Inicia sesión con</p>
-              <a href=""><fa-icon [icon]="faGoogle"></fa-icon></a>
+              <a class="googleIco" href=""><fa-icon [icon]="faGoogle"></fa-icon></a>
               <i class="fab fa-facebook-f"></i>
             </div>
   

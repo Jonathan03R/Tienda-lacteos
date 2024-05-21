@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Auth, authState, createUserWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from '@angular/fire/auth';
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   getAuth,
@@ -39,6 +39,25 @@ export class AuthService {
       user.Usuariocorreo_electronico,
       user.Usuariocontrasena
     );
+  }
+
+  iniciarSesionConGoogle() {
+    const provider = new GoogleAuthProvider();
+    return signInWithRedirect(this.auth, provider);
+  }
+
+  async handleGoogleRedirect(): Promise<string | null> {
+    try {
+      const result = await getRedirectResult(this.auth);
+      if (result) {
+        const email = result.user?.email || null;
+        return email;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error handling Google redirect', error);
+      throw error;
+    }
   }
 
   cerrarSesion() {

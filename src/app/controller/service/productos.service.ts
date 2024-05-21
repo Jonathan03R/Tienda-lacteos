@@ -17,7 +17,7 @@ export class ProductosService {
 
 
   cargarProductos(): Observable<Productos[]> {
-    return this.http.get<Productos[]>(`${BASE_URL}/products/productos`);
+    return this.http.get<Productos[]>(`${BASE_URL}/products/productosMostrar`);
   }
 
   getProductos(): Productos[] {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -20,11 +20,49 @@ import { FirebaseErrorService } from '../../../../controller/service/autenticaci
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-export default class RegisterComponent {
-  private aurthService = inject(AuthService);
+export default class RegisterComponent implements OnInit {
+  private authService = inject(AuthService);
   private _router = inject(Router);
   formBuilder = inject(FormBuilder);
   private firebaseError = inject(FirebaseErrorService);
+
+
+  ngOnInit() {
+    this.handleGoogleRedirect();
+    this.subscribeToAuthStateChanges();
+  }
+
+  iniciarSesionConGoogle() {
+    this.authService.iniciarSesionConGoogle().catch(error => {
+      console.error('Error al iniciar sesión con Google', error);
+    });
+  }
+  
+  private handleGoogleRedirect() {
+    this.authService.handleGoogleRedirect().then(email => {
+      if (email) {
+        console.log('Usuario autenticado con el correo:', email);
+        // Aquí puedes usar el correo electrónico como desees, por ejemplo, guardarlo en una base de datos MySQL
+        // Luego puedes navegar a otra página si es necesario
+        // this.router.navigate(['/otra-pagina']);
+      }
+    }).catch(error => {
+      console.error('Error al manejar la redirección de Google', error);
+    });
+  }
+
+  private subscribeToAuthStateChanges() {
+    this.authService.authState$.subscribe(user => {
+      if (user) {
+        console.log('Cambio de estado de autenticación - Usuario autenticado con el correo:', user.email);
+        // Aquí también puedes usar el correo electrónico como desees
+      } else {
+        console.log('Cambio de estado de autenticación - Usuario no autenticado');
+      }
+    });
+  }
+
+
 
   async registrar() {
     console.log('Estado del formulario:', this.formRegister.value);
@@ -48,7 +86,7 @@ export default class RegisterComponent {
     };
 
     try {
-      await this.aurthService.registrarse(user);
+      await this.authService.registrarse(user);
       console.log(this.formRegister.value);
       this._router.navigateByUrl('/dashboard');
     } catch (error) {

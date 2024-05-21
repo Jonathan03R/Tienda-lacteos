@@ -4,8 +4,9 @@
         <div class="list-product">
            @for (product of productos; track product.ProductoCodigo) {
                <div class="box"  >
-                   <img src="https://quesoselherreño.es/wp-content/uploads/2023/06/Queso-el-Herreno-Portada-1.png"
+                   <img [src]="product.Productofoto"
                        alt="producto">
+                    <p>{{product.Productofoto}}</p>
                    <p>{{ product.Productonombre }}</p>
                    <p>{{ product.Productodescripcion }}</p>
                    <p>Cantidad disponible: {{ product.Productocantidad_disponible }}</p>
