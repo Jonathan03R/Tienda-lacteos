@@ -25,22 +25,29 @@ import { CarritoServiceService } from '../../../controller/service/carrito/Carri
 export default class ProductosComponent implements OnInit{
 
   public _productosService = inject(ProductosService)
-
   _carritoService = inject(CarritoServiceService)
 
   minQuantity: number = 1;
-  // maxQuantity: number = 5;
   quantity: number = 1;
-  
   a: number = 1;
 
-  productos: Productos[] = [];
+  productosFiltrados: Productos[] = []; // Productos filtrados según el término de búsqueda
+  filterProperty: string = '';
 
+  productos: Productos[] = [];
+  
 
 
   ngOnInit(): void {
     this._productosService.actualizarProductos();
     this.productos = this._productosService.getProductos()
+    this.productosFiltrados = [...this.productos]; 
+  }
+
+  filtrarProductos() {
+    this.productosFiltrados = this.productos.filter(producto =>
+      producto.Productonombre.toLowerCase().includes(this.filterProperty.toLowerCase())
+    );
   }
 
 
