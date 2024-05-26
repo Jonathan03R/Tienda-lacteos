@@ -40,12 +40,20 @@ export class NavBarComponent implements OnInit {
   }
 
 
+  // public menuItems = routes
+  //   .map(routes => routes.children ?? [])
+  //   .flat()
+  //   .filter(routes => routes && routes.path)
+  //   .filter(routes => !routes.path?.includes('**'))
   public menuItems = routes
-    .map(routes => routes.children ?? [])
-    .flat()
-    .filter(routes => routes && routes.path)
-    .filter(routes => !routes.path?.includes('**'))
-
+    .filter(route => route.path === 'dashboard')  // Encuentra la ruta 'dashboard'
+    .flatMap(route => route.children ?? [])  // Extrae las rutas hijas
+    .filter(route => route && route.path)  // Filtra las rutas válidas
+    .filter(route => !route.path?.includes('**'))  // Elimina las rutas comodín
+    .map(route => ({
+        path: route.path,
+        title: route.title
+    }));
 
   private _router = inject(Router);
 

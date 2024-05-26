@@ -1,0 +1,27 @@
+<div class="d-flex ">
+  <div class="inventory-container">
+    <h1>Inventario</h1>
+    <div class="inventory-scroll">
+      <div class="inventory-grid">
+        <div class="inventory-header">Nombre</div>
+        <div class="inventory-header">Categoría</div>
+        <div class="inventory-header">Cantidad</div>
+        <div class="inventory-header">Precio</div>
+        @for (inventario of inventario; track $index) {
+        <div class="inventory-item">{{inventario.Nombre}}</div>
+        <div class="inventory-item">{{inventario.Categoria}}</div>
+        <div class="inventory-item">{{inventario.Cantidad}}</div>
+        <div class="inventory-item">{{inventario.Precio}}</div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="botonesProductos p-3 d-flex flex-column" >
+    <button class="mb-3">Nuevo producto</button>
+    <button class="mb-3">Editar Producto</button>
+    <button class="mb-3">Aliminar Producto</button>
+
+
+
+  </div>
+</div>

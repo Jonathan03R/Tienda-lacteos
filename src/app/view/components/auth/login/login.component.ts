@@ -21,6 +21,12 @@ export default class LoginComponent {
   private formBuilder = inject(FormBuilder);
   private firebaseErrorService = inject(FirebaseErrorService)
 
+  iniciarSesionConGoogle() {
+    this.authService.iniciarSesionConGoogle().catch(error => {
+      console.error('Error al iniciar sesión con Google', error);
+    });
+  }
+
   async login() {
     console.log('Estado del formulario login', this.formLogin.value);
     if (this.formLogin.invalid){

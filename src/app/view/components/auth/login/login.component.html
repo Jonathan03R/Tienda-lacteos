@@ -9,7 +9,7 @@
           <form [formGroup]="formLogin" (ngSubmit)="login()">
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Inicia sesión con</p>
-              <a class="googleIco" href=""><fa-icon [icon]="faGoogle"></fa-icon></a>
+              <a class="googleIco" (click)="iniciarSesionConGoogle()"><fa-icon [icon]="faGoogle"></fa-icon></a>
               <i class="fab fa-facebook-f"></i>
             </div>
   

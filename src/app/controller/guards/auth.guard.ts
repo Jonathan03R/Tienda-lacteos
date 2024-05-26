@@ -27,7 +27,7 @@ export const publicGuard: CanActivateFn = () => {
   return authStateObs$().pipe(
     map((user) => {
       if(user){
-        router.navigateByUrl('/perfil');
+        router.navigateByUrl('/Empresa');
         console.log("usuario esistente", user)
         return false;
       }

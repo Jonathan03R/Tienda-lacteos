@@ -17,9 +17,18 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'perfil',
+        path: 'Empresa',
         canActivate: [authGuard],
-        loadComponent: ()=> import ('./view/shared/Perfil/Perfil.component'),
+        loadComponent: ()=> import ('./view/admin/components/principal/principal.component'),
+        children: [
+            {path: 'home', loadComponent:() => import('./view/admin/pages/inicio/inicio.component'), title: 'Inicio' },
+            {path: 'page2', loadComponent:() => import('./view/admin/pages/inventario/inventario.component'), title: 'Inventario' },
+            {path: 'clientes', loadComponent:() => import ('./view/admin/pages/clientes/clientes.component'), title: 'Clientes' },
+            {path: 'consultas', loadComponent:() => import ('./view/admin/pages/consultas/consultas.component'), title: 'Consultas ' },
+            {path: 'perfil', loadComponent:() => import('./view/shared/Perfil/Perfil.component'),  title: 'Perfil'},
+            { path: '', redirectTo: '/Empresa/home', pathMatch: 'full' },
+            { path: '**', redirectTo: '/Empresa/home', pathMatch: 'full' }
+        ]
     },
     {
         path: 'login' ,
@@ -39,7 +48,7 @@ export const routes: Routes = [
     {
         // Redirección en caso de ruta desconocida
         path: '**',
-        redirectTo: '/no-encontrada',
+        redirectTo: 'dashboard/home',
         pathMatch: 'full'
     },
 ];
