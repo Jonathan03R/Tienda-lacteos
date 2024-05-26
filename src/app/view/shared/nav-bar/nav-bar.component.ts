@@ -57,7 +57,7 @@ export class NavBarComponent implements OnInit {
   calcularTotal(): string  {
     let total = 0;
     for (const producto of this.productosCarrito) {
-      total += producto.Productoprecio * producto.quantity!;
+      total += producto.ProductoPrecio * producto.quantity!;
     }
     return total.toFixed(2);;
   }

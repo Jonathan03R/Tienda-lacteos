@@ -59,13 +59,13 @@
             @for (producto of productosCarrito; track $index) {
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h5>{{producto.Productonombre}}</h5>
-                    <p>{{producto.Productodescripcion}}</p>
+                    <h5>{{producto.ProductoNombre}}</h5>
+                    <p>{{producto.ProductoDescripcion}}</p>
                     <div class="d-flex align-items-center price">
-                        <p class="precioPro"> S/. {{ producto.Productoprecio }}</p>
+                        <p class="precioPro"> S/. {{ producto.ProductoPrecio }}</p>
                         <p class="fw-bold">Cantidad: {{ producto.quantity }}</p>
                     </div>
-                    <p>Sub Total: S/.{{ producto.Productoprecio * producto.quantity! }}</p>
+                    <p>Sub Total: S/.{{ producto.ProductoPrecio * producto.quantity! }}</p>
                 </div>
                 
                 <button class="btn-delete" (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)"><fa-icon

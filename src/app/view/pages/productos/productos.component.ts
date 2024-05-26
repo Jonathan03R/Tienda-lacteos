@@ -46,7 +46,7 @@ export default class ProductosComponent implements OnInit{
 
   filtrarProductos() {
     this.productosFiltrados = this.productos.filter(producto =>
-      producto.Productonombre.toLowerCase().includes(this.filterProperty.toLowerCase())
+      producto.ProductoNombre .toLowerCase().includes(this.filterProperty.toLowerCase())
     );
   }
 
@@ -63,7 +63,7 @@ export default class ProductosComponent implements OnInit{
 
   increment(producto: Productos) {
     console.log('Incrementando producto:', producto);
-    if (producto.quantity! < producto.Productocantidad_disponible) {
+    if (producto.quantity! < producto.ProductoCantidad) {
       producto.quantity!++;
       this.validateInput(producto);
     }
@@ -80,8 +80,8 @@ export default class ProductosComponent implements OnInit{
   validateInput(producto: Productos) {
     if (producto.quantity! < 1) {
       producto.quantity! = 1;
-    } else if (producto.quantity! > producto.Productocantidad_disponible) {
-      producto.quantity! = producto.Productocantidad_disponible;
+    } else if (producto.quantity! > producto.ProductoCantidad) {
+      producto.quantity! = producto.ProductoCantidad;
     }
   }
   

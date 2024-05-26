@@ -15,6 +15,12 @@
   object-fit: cover; 
 }
 
+.tituloProducto{
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
 /* From uiverse.io by @satyamchaudharydev */
 /* removing default style of button */
 
