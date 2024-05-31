@@ -11,7 +11,7 @@
 
                 <!-- logo -->
                 <div class="logo" (click)="redirectToPantallaCarga() " style="cursor: pointer;">
-                    <img src="../../../../assets/logo.png" alt="" style="height: 50px;" class="me-3">
+                    <img src="../../../../assets/logoEmpresa.png" alt="" style="height: 50px;" class="me-3">
                     <a class="navbar-brand text-uppercase fs-3 d-none d-lg-block">san Jose</a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="iconos">
-                <a><fa-icon [icon]="faHeart"></fa-icon> </a>
+                <!-- <a><fa-icon [icon]="faHeart"></fa-icon> </a> -->
                 <!-- <a routerLink="/login"><fa-icon [icon]="faUser"></fa-icon></a> -->
                 <!-- shop -->
                 <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
@@ -75,11 +75,12 @@
             }
         </div>
 
-        <div class="offcanvas-footer border-top " style="padding-left: 25px;">
+        <div class="offcanvas-footer border-top d-flex justify-content-between" style="padding-left: 25px; padding-top: 10px;">
             <div class="d-flex  align-items-center ">
                 <h5 style="margin-right: 50px;" class="offcanvas-title" id="offcanvasExampleLabel">  Total:      </h5>
                 <h5 style="margin-bottom: 0;">S/. {{calcularTotal()}} </h5>
             </div>
+            <button routerLink="/pedido" class="Boton-Comprar ">Comprar</button>
         </div>
     </div>
 </div>

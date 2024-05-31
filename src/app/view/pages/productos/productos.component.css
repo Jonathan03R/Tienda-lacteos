@@ -222,12 +222,12 @@ input:not(:placeholder-shown) ~ .reset {
 
 .list-product {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid de columnas autoajustables */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid de columnas autoajustables */
   grid-gap: 30px; /* Margen entre las columnas */
 }
 
 .list-product .box {
-  background-color: #151515;
+  background-color: #15151538;
   border-radius: 20px;
   padding: 20px;
   transition: all 0.2s;
@@ -241,6 +241,7 @@ input:not(:placeholder-shown) ~ .reset {
 
 .list-product .box img {
   height: 180px;
+  width: 250px;
 }
 
 .iconos a {
@@ -254,8 +255,8 @@ input:not(:placeholder-shown) ~ .reset {
   font-size: 30px;
   color: #eee;
   cursor: pointer;
-  margin-right: 30px; 
-  margin-left: 30px;
+  margin-right: 10px; 
+  margin-left: 10px;
   transition: all .1s;
 
 }

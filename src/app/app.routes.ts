@@ -10,7 +10,7 @@ export const routes: Routes = [
             {path: 'home' , loadComponent:() => import('./view/pages/inicio/inicio.component'), title: 'Inicio' },
             {path: 'products' , loadComponent: ()=> import('./view/pages/productos/productos.component'), title: 'Productos' },
             {path: 'Favorites' , loadComponent: ()=> import('./view/pages/favoritos/favoritos.component'), title: 'Favoritos' },
-            // {path: 'Noticias' , loadComponent: () => import('./view/pages/noticias/noticias.component'), title: 'Noticias' },
+            {path: 'envios' , loadComponent: () => import('./view/pages/envios/envios.component'), title: 'Envios' },
             
             { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/dashboard/home', pathMatch: 'full' }
@@ -29,6 +29,10 @@ export const routes: Routes = [
             { path: '', redirectTo: '/Empresa/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/Empresa/home', pathMatch: 'full' }
         ]
+    },
+    {
+        path: 'pedido' ,
+        loadComponent: () => import ('./view/pages/productos/pedido/pedido.component')
     },
     {
         path: 'login' ,

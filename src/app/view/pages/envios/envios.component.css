@@ -1,0 +1,18 @@
+.envios {
+  padding-top: 80px;
+  color: #000000;
+  min-height: 40vw;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.boton-enviar {
+  border: none;
+  margin-left: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  height: 35px;
+  width: 95px;
+}

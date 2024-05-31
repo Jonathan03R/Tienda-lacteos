@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FlooterComponent } from '../../../shared/Flooter/Flooter.component';
 import { routes } from '../../../../app.routes';
 import { AuthService } from '../../../../controller/service/autenticacionController/auth.service';
 import { InventarioService } from '../../../../controller/service/inventario/inventario.service';
+import { FooterComponent } from '../../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [CommonModule, RouterModule, FlooterComponent],
+  imports: [CommonModule, RouterModule, FooterComponent],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

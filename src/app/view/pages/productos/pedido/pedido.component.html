@@ -1,0 +1,85 @@
+<!-- 
+datos que se le pedira al cliente:
+dni:  esto no esta en la base de datos ,se debe agregar
+Nombre:
+Apellido:
+Dirección:
+telefono:
+Correo:  -->
+
+
+<section class="pedidos">
+    <div class="container min-vh-100 pb-5">
+
+        <div class="row">
+
+            <form class="col-8 formPedido" action="">
+                <h2>Finalizar Compra</h2>
+                <p>Revisa y completa tus datos para finalizar tu pedido.</p>
+                <div class="input-group mb-4">
+                    <span class="input-group-text" id="basic-addon1">Dni</span>
+                    <input type="text" class="form-control" id="dni" name="dni" aria-label="Username"
+                        aria-describedby="basic-addon1" required>
+                </div>
+
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Nombres y Apellidos</span>
+                    <input type="text" id="nombre" name="nombre" aria-label="nombres" class="form-control" required>
+                    <input type="text" id="apellido" name="apellido" aria-label="apellidos" class="form-control"
+                        required>
+                </div>
+
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Dirección</span>
+                    <input type="text" class="form-control" id="direccion" name="direccion" aria-label="direccion"
+                        required>
+                </div>
+
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Telefono</span>
+                    <input type="tel" class="form-control" id="telefono" name="telefono" aria-label="telefono" required>
+                </div>
+
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Email</span>
+                    <input type="email" class="form-control" id="correo" name="correo" aria-label="correo" required>
+                </div>
+
+                <div class="input-group mb-4 d-flex flex-column">
+                    <span>Metodo de pago:</span>
+                    <div class="grupoBotones mt-3">
+                        <!-- <button>Tarjeta</button>
+                        <button>Transferencia</button> -->
+
+                        <div class="radio-inputs">
+                            <label>
+                                <input class="radio-input" type="radio" name="engine">
+                                <span class="radio-tile">
+                                    <span class="radio-label">Tarjeta</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input class="radio-input" type="radio" name="engine">
+                                <span class="radio-tile">
+                                    <span class="radio-label">Transferencia</span>
+                                </span>
+                            </label>
+                            <!-- <label>
+                                <input class="radio-input" type="radio" name="engine">
+                                <span class="radio-tile">
+                                    <span class="radio-label">Car</span>
+                                </span>
+                            </label> -->
+                        </div>
+                    </div>
+                </div>
+                <button class="mt-4 btn-registrarPedido btn btn-primary" type="submit">registrar</button>
+
+            </form>
+            <div class="CompraResumen col">
+                <h2 class="title">Resumen del pedido</h2>
+            </div>
+
+        </div>
+    </div>
+</section>

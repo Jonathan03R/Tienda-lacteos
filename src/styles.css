@@ -1,12 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 *{
     font-family: 'Poppins', sans-serif;
-    
+    /* color: black; */
 }
 
 html,
 body {
-    height: 100%;
+    height: 100%;   
+    color: black; 
+
 }
 
 body {

@@ -10,6 +10,10 @@
   font-family: 'Poppins', sans-serif;
   
 }
+
+.logo a {
+  color: #009444;
+}
             
 
 
@@ -71,12 +75,20 @@
   margin-left: 10px;
   margin-right: 10px;
   font-size: 25px;
-  color: #fff;
+  color: #ffffff;
   transition: all 0.2s;
 }
 
 .iconos a:hover {
   color: #0aa850;
+}
+
+
+.Boton-Comprar{
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  background-color: #80c341;
 }
 
 
