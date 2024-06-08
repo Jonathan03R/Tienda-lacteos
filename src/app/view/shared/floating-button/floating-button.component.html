@@ -1,3 +1,4 @@
-<div class="floating-button">
-    <i class="material-icons">support_agent</i>
-  </div>
+<div class="floating-button" (click)="toggleChat()">
+  <i class="material-icons">support_agent</i>
+</div>
+<app-mini-chat [isVisible]="isChatVisible"></app-mini-chat>

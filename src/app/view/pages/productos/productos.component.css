@@ -21,8 +21,6 @@
   margin-top: 15px;
 }
 
-/* From uiverse.io by @satyamchaudharydev */
-/* removing default style of button */
 
 .form button {
   border: none;
@@ -74,7 +72,7 @@
   border-radius: 1px;
   transition: transform var(--timing) ease;
 }
-/* Hover on Input */
+
 .form:focus-within {
   border-radius: var(--after-border-radius);
 }
@@ -82,12 +80,11 @@
 input:focus {
   outline: none;
 }
-/* here is code of animated border */
+
 .form:focus-within:before {
   transform: scale(1);
 }
-/* styling of close button */
-/* == you can click the close button to remove text == */
+
 .reset {
   border: none;
   background: none;
@@ -106,8 +103,7 @@ input:not(:placeholder-shown) ~ .reset {
 }
 
 
-/* From uiverse.io by @satyamchaudharydev */
-/* removing default style of button */
+
 
 .form button {
   border: none;

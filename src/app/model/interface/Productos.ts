@@ -8,3 +8,4 @@ export interface Productos {
     Producto_TipoProductoCodigo: string;
     quantity?: number;
 }
+

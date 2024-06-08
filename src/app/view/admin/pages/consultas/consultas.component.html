@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <div class="row">
+      <!-- Lista de chats de clientes -->
+      <div class="col-md-4">
+        <h4>Chats de Clientes</h4>
+        <ul class="list-group chat-list">
+          <li *ngFor="let chat of clientChats" class="list-group-item chat-item" [ngClass]="{'active': selectedChat?.clientId === chat.clientId}" (click)="selectChat(chat)">
+            Cliente: {{ chat.clientId }}
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Ventana de chat -->
+      <div class="col-md-8">
+        <div *ngIf="selectedChat">
+          <h4>Chat con Cliente: {{ selectedChat.clientId }}</h4>
+          <div class="chat-window">
+            <div class="message" *ngFor="let message of selectedChat.messages" [ngClass]="{'client-message': message.user, 'worker-message': !message.user}">
+              {{ message.text }}
+            </div>
+          </div>
+          <div class="chat-input mt-3">
+            <input type="text" [(ngModel)]="workerInput" class="form-control" placeholder="Escribe un mensaje...">
+            <button class="btn btn-primary mt-2" (click)="sendWorkerMessage()">Enviar</button>
+          </div>
+        </div>
+        <div *ngIf="!selectedChat">
+          <p>Seleccione un chat para comenzar a atender al cliente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
