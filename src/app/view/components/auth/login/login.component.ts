@@ -7,6 +7,8 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from '../../../../controller/service/autenticacionController/auth.service';
 import { UserLogin, UserLoginForm } from '../../../../model/interface/user';
 import { FirebaseErrorService } from '../../../../controller/service/autenticacionController/firebase-error.service';
+import { EmpleadosService } from '../../../../controller/service/autenticacionController/empleados.service';
+import { Empleados } from '../../../../model/interface/empleados';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +22,36 @@ export default class LoginComponent {
   private _router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private firebaseErrorService = inject(FirebaseErrorService)
-
-  iniciarSesionConGoogle() {
-    this.authService.iniciarSesionConGoogle().catch(error => {
-      console.error('Error al iniciar sesión con Google', error);
-    });
+  private empleadosService  = inject(EmpleadosService)
+  ngOnInit(): void {
   }
+  iniciarSesionConGoogle() {
+    this.authService.iniciarSesionConGoogle();
+    this.handleGoogleRedirect();
+    
+  }
+
+  async handleGoogleRedirect() {
+    const email = await this.authService.handleGoogleRedirect();
+    if (email) {
+      console.log('Usuario logeado con Google:', email);
+      this.buscarEmpleadoPorCorreo(email);
+    }
+  }
+  
+  buscarEmpleadoPorCorreo(email: string) {
+    this.empleadosService.buscarEmpleadoInfo(email).subscribe(
+      empleado => {
+        this.empleadosService.addEmpleado(empleado);
+        console.log('Información del empleado:', empleado);
+        this._router.navigateByUrl('/perfil');
+      },
+      error => {
+        console.error('Error al obtener información del empleado:', error);
+      }
+    );
+  }
+  
 
   async login() {
     console.log('Estado del formulario login', this.formLogin.value);
@@ -38,6 +64,8 @@ export default class LoginComponent {
       Usuariocorreo_electronico: this.formLogin.value.Usuariocorreo_electronico!,
       Usuariocontrasena: this.formLogin.value.Usuariocontrasena!,
     }; 
+
+
     try{
       await this.authService.logearse(user);
       console.log(this.formLogin.value);
@@ -64,5 +92,7 @@ export default class LoginComponent {
   // Iconos 
 
   faGoogle = faGoogle;
+
+
   
 }

@@ -35,6 +35,8 @@ export default class InventarioComponent implements OnInit {
   productosFiltrados: Inventario[] = []; // Lista de productos filtrados
   filterProperty: string = '';
 
+  alertMessage: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private inventarioService: InventarioService
@@ -104,6 +106,7 @@ export default class InventarioComponent implements OnInit {
       (response) => {
         console.log('Producto agregado:', response);
         this.inventarioService.actualizarInventario();
+        
       },
       (error) => {
         console.error('Error al agregar producto:', error);

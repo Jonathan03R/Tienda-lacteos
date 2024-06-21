@@ -26,6 +26,7 @@ export const routes: Routes = [
             {path: 'clientes', loadComponent:() => import ('./view/admin/pages/clientes/clientes.component'), title: 'Clientes' },
             {path: 'consultas', loadComponent:() => import ('./view/admin/pages/consultas/consultas.component'), title: 'Chats ' },
             {path: 'perfil', loadComponent:() => import('./view/shared/Perfil/Perfil.component'),  title: 'Perfil'},
+            {path: 'historial', loadComponent:() => import('./view/admin/pages/Historial/Historial.component'), title: 'Historial' },
             { path: '', redirectTo: '/Empresa/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/Empresa/home', pathMatch: 'full' }
         ]

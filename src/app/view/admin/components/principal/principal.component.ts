@@ -5,6 +5,9 @@ import { routes } from '../../../../app.routes';
 import { AuthService } from '../../../../controller/service/autenticacionController/auth.service';
 import { InventarioService } from '../../../../controller/service/inventario/inventario.service';
 import { FooterComponent } from '../../../shared/footer/footer.component';
+import { HistorialinventarioService } from '../../../../controller/service/inventario/historialinventario.service';
+import { Empleados } from '../../../../model/interface/empleados';
+import { EmpleadosService } from '../../../../controller/service/autenticacionController/empleados.service';
 
 @Component({
   selector: 'app-principal',
@@ -17,9 +20,33 @@ import { FooterComponent } from '../../../shared/footer/footer.component';
 export default class PrincipalComponent implements OnInit {
 
   _inventarioService = inject(InventarioService)
+  private serviceHistorial = inject(HistorialinventarioService);
+  private authService = inject (AuthService);
+  private empleadosService = inject (EmpleadosService);
+
+  usuario: any;
+  empleado: Empleados | null = null;
 
   ngOnInit(): void {
-    this._inventarioService.actualizarInventario();
+    this.authService.user$.subscribe(user => {
+      this.usuario = user;
+      if (user?.email) {
+        this.obtenerEmpleado(user.email);
+      }
+    });
+  }
+
+  obtenerEmpleado(email: string) {
+    this.empleadosService.buscarEmpleadoInfo(email).subscribe(
+      empleado => {
+        this.empleado = empleado;
+        this.empleadosService.addEmpleado(empleado);
+        console.log("Empleado encontrado: ", empleado);
+      },
+      error => {
+        console.error("Error al obtener empleado: ", error);
+      }
+    );
   }
 
   public menuItems = routes

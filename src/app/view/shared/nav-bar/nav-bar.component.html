@@ -42,9 +42,20 @@
                 <!-- <a><fa-icon [icon]="faHeart"></fa-icon> </a> -->
                 <!-- <a routerLink="/login"><fa-icon [icon]="faUser"></fa-icon></a> -->
                 <!-- shop -->
-                <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
-                    aria-controls="offcanvasShop"><fa-icon [icon]="faCartShopping"></fa-icon></a>
+                <!-- <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
+                    aria-controls="offcanvasShop"><fa-icon [icon]="faCartShopping"></fa-icon></a> -->
+                <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
+                    aria-controls="offcanvasShop" class=" position-relative">
+                    <fa-icon [icon]="faCartShopping"></fa-icon>
+                    @if (this.productosCarrito.length > 0) {
+                        <span class=" position-absolute top-0 start-80 translate-middle badge rounded-pill bg-danger">
+                            {{this.productosCarrito.length }}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    }
+                </a>
             </div>
+
 
 
         </div>
@@ -67,20 +78,23 @@
                     </div>
                     <p>Sub Total: S/.{{ producto.ProductoPrecio * producto.quantity! }}</p>
                 </div>
-                
-                <button class="btn-delete" (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)"><fa-icon
-                    [icon]="faTrash"></fa-icon></button>
+
+                <button class="btn-delete"
+                    (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)"><fa-icon
+                        [icon]="faTrash"></fa-icon></button>
             </div>
             <hr>
             }
         </div>
 
-        <div class="offcanvas-footer border-top d-flex justify-content-between" style="padding-left: 25px; padding-top: 10px;">
+        <div class="offcanvas-footer border-top d-flex justify-content-between"
+            style="padding-left: 25px; padding-top: 10px;">
             <div class="d-flex  align-items-center ">
-                <h5 style="margin-right: 50px;" class="offcanvas-title" id="offcanvasExampleLabel">  Total:      </h5>
+                <h5 style="margin-right: 50px;" class="offcanvas-title" id="offcanvasExampleLabel"> Total: </h5>
                 <h5 style="margin-bottom: 0;">S/. {{calcularTotal()}} </h5>
             </div>
-            <button routerLink="/pedido" class="Boton-Comprar ">Comprar</button>
+            <button *ngIf="productosCarrito.length > 0" routerLink="/pedido" class="Boton-Comprar " type="button"
+                data-bs-dismiss="offcanvas">Comprar</button>
         </div>
     </div>
 </div>

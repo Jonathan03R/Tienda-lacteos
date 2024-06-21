@@ -18,9 +18,9 @@ export class InventarioService {
   actualizarInventario(): void {
     this.cargarInventario().subscribe(
       (data) => {
-        console.log('datos obtenidos de la bd')
+        console.log('datos obtenidos deL INVETARIO')
         this.inventario.next(data);
-        console.log(this.inventario) //aqui se llena los datos
+        // console.log(this.inventario) //aqui se llena los datos
       },
       (error) => {
         console.error('Error al cargar inventario:', error);

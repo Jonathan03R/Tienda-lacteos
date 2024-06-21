@@ -79,6 +79,10 @@
   transition: all 0.2s;
 }
 
+.iconos span {
+  font-size: 10px;
+}
+
 .iconos a:hover {
   color: #0aa850;
 }

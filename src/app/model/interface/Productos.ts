@@ -5,6 +5,7 @@ export interface Productos {
     ProductoPrecio: number;
     ProductoCantidad: number;
     ProductoFoto: string;
+    ProductoEstado: string;
     Producto_TipoProductoCodigo: string;
     quantity?: number;
 }

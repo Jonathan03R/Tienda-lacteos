@@ -1,0 +1,19 @@
+.table-scroll {
+  max-height: 400px; /* Ajusta la altura según sea necesario */
+  overflow-y: auto;
+}
+
+.nav-tabs .nav-link {
+  color: #495057;
+}
+
+.nav-tabs .nav-link.active {
+  color: #007bff;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: white;
+}

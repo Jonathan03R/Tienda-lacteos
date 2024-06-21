@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ProductosService } from './controller/service/productos.service';
 import { InventarioService } from './controller/service/inventario/inventario.service';
+import { HistorialinventarioService } from './controller/service/inventario/historialinventario.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,14 @@ import { InventarioService } from './controller/service/inventario/inventario.se
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
-  _productosService = inject(ProductosService)
-  _inventario = inject (InventarioService)
+  _productosService = inject(ProductosService);
+  _inventario = inject (InventarioService);
+  _historial = inject (HistorialinventarioService);
 
   ngOnInit(): void {
     this._productosService.actualizarProductos();
     this._inventario.actualizarInventario();
+    this._historial.actualizarHistorial();
   }
 
 }
