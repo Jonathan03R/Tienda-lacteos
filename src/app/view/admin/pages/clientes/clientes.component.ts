@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-flooter',
+  selector: 'app-clientes',
   standalone: true,
   imports: [
     CommonModule,
   ],
-  templateUrl: './Flooter.component.html',
-  styleUrl: './Flooter.component.css',
+  templateUrl: './clientes.component.html',
+  styleUrl: './clientes.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlooterComponent { }
+export default class ClientesComponent { }

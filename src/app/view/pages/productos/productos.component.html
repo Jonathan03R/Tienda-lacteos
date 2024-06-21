@@ -1,38 +1,115 @@
 <Section class="productos">
     <div class=" container">
-        
+        <div class="form">
+            <button>
+                <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
+                    aria-labelledby="search">
+                    <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                        stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round">
+                    </path>
+                </svg>
+            </button>
+            <!-- <input type="text" [(ngModel)]="filterProperty" (input)="filtrarProductos()"> -->
+            <input class="input" placeholder="Buscar producto" type="text" [(ngModel)]="filterProperty"
+                (input)="filtrarProductos()">
+            <button class="reset" type="reset">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- <div>
+            <input type="text" [(ngModel)]="filterProperty" (input)="filtrarProductos()">
+        </div> -->
+        <!-- <li *ngFor="let producto of productosFiltrados">
+            {{ producto.Productonombre }}
+        </li> -->
         <div class="list-product">
-           @for (product of productos; track product.ProductoCodigo) {
-               <div class="box"  >
-                   <img src="https://quesoselherreño.es/wp-content/uploads/2023/06/Queso-el-Herreno-Portada-1.png"
-                       alt="producto">
-                   <p>{{ product.Productonombre }}</p>
-                   <p>{{ product.Productodescripcion }}</p>
-                   <p>Cantidad disponible: {{ product.Productocantidad_disponible }}</p>
-                   <p>Precio: {{product.Productoprecio}}</p>
-                   <p>Precio total: {{ product.Productoprecio * product.quantity! }}</p>
-                   <div class="d-flex align-items-center justify-content-center">
-                       <div class="d-flex align-items-center">
-                           <div class="iconos">
-                               <a class="btn-corazon btn-productos"><fa-icon class="corazon" [icon]="faHeart"></fa-icon></a>
-                           </div>
-                           <div class="number-input">
-                               <button (click)="decrement(product)" class="minus">-</button>
-                               <input class="quantity" [min]="minQuantity" [max]="product.Productocantidad_disponible" name="quantity"
-                                   [(ngModel)]="product.quantity" type="number" (input)="validateInput(product)">
-                               <button (click)="increment(product)" class="plus">+</button>
-                           </div>
-                           
-                           <div class="iconos">
-                                <a class="btn-carrito btn-productos" (click)="agregarAlCarrito(product)" ><fa-icon
-                                [icon]="faCartShopping"></fa-icon></a>
-
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           }
+            @for (product of productosFiltrados; track product.ProductoCodigo) {
+                @if (product.ProductoEstado !== 'A') {
+                    <div class="box d-flex flex-column justify-content-between">   
+                        <div>
+                            <div class="d-flex align-content-center justify-content-center ">
+                            <img class="imgProductos" [src]="product.ProductoFoto" alt="producto">
+                            
+                            </div>
+                            <div>
+                                 <!-- <p>{{product.ProductoFoto}}</p>   -->
+                                <p class="tituloProducto">{{ product.ProductoNombre }}</p>
+                                <p>{{ product.ProductoDescripcion }}</p>
+                                 <p>Cantidad disponible: {{ product.ProductoCantidad }}</p> 
+                                <!-- <p>Precio: {{product.ProductoPrecio}}</p>  -->
+                                <!-- <p>Precio total: {{ product.Productoprecio * product.quantity! }}</p> -->
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <div class="d-flex align-items-center">
+                                <div class="iconos">
+                                    <a class="btn-corazon btn-productos"><fa-icon class="corazon"
+                                            [icon]="faHeart"></fa-icon></a>
+                                </div>
+                                <div class="number-input">
+                                    <button (click)="decrement(product)" class="minus">-</button>
+                                    <input class="quantity" [min]="minQuantity" [max]="product.ProductoCantidad"
+                                        name="quantity" [(ngModel)]="product.quantity" type="number"
+                                        (input)="validateInput(product)">
+                                    <button (click)="increment(product)" class="plus">+</button>
+                                </div>
+        
+                                <div class="iconos">
+                                    <a class="btn-carrito btn-productos" (click)="agregarAlCarrito(product)"><fa-icon
+                                            [icon]="faCartShopping"></fa-icon></a>
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }@else {
+                    <div class="box d-flex flex-column justify-content-between" style="position: relative;">   
+                        <div class="ribbon-wrapper">
+                            <div class="ribbon">AGOTADO</div>
+                        </div>
+                        <div>
+                            <div class="d-flex align-content-center justify-content-center ">
+                            <img class="imgProductos" [src]="product.ProductoFoto" alt="producto">
+                            
+                            </div>
+                            <div>
+                                 <!-- <p>{{product.ProductoFoto}}</p>   -->
+                                <p class="tituloProducto">{{ product.ProductoNombre }} </p>
+                                <p>{{ product.ProductoDescripcion }}</p>
+                                 <p>Cantidad disponible: {{ product.ProductoCantidad }}</p> 
+                                <!-- <p>Precio: {{product.ProductoPrecio}}</p>  -->
+                                <!-- <p>Precio total: {{ product.Productoprecio * product.quantity! }}</p> -->
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <div class="d-flex align-items-center">
+                                <div class="iconos">
+                                    <a class="btn-corazon btn-productos"><fa-icon class="corazon"
+                                            [icon]="faHeart"></fa-icon></a>
+                                </div>
+                                <!-- <div class="number-input">
+                                    <button (click)="decrement(product)" class="minus">-</button>
+                                    <input class="quantity" [min]="minQuantity" [max]="product.ProductoCantidad"
+                                        name="quantity" [(ngModel)]="product.quantity" type="number"
+                                        (input)="validateInput(product)">
+                                    <button (click)="increment(product)" class="plus">+</button>
+                                </div> -->
+        
+                                <!-- <div class="iconos">
+                                    <a class="btn-carrito btn-productos" (click)="agregarAlCarrito(product)"><fa-icon
+                                            [icon]="faCartShopping"></fa-icon></a>
+        
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                }
             
+            }
+
         </div>
     </div>
 

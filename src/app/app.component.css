@@ -1,4 +1,4 @@
 .box{
-    background-color: black;
-
+    background-image: linear-gradient(to right, #ccfed9, #95bafe);
+    color: black;
 }

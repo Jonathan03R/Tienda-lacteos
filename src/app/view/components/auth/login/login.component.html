@@ -1,4 +1,4 @@
-<section class="vh-100 text-white d-flex flex-column align-items-center justify-content-center" style="border: 2px solid red;">
+<section class="vh-100 text-white d-flex flex-column align-items-center justify-content-center">
     <div class="container-fluid pt-2 h-custom">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-9 col-lg-6 col-xl-5">
@@ -6,20 +6,11 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
+          <form [formGroup]="formLogin" (ngSubmit)="login()">
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Inicia sesión con</p>
-              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-              </button>
-  
-              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
-  
-              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-floating mx-1">
-                <i class="fab fa-linkedin-in"></i>
-              </button>
+              <a class="googleIco" (click)="iniciarSesionConGoogle()"><fa-icon [icon]="faGoogle"></fa-icon></a>
+              <i class="fab fa-facebook-f"></i>
             </div>
   
             <div class="divider d-flex align-items-center my-4">
@@ -28,14 +19,14 @@
   
             <!-- Email input -->
             <div data-mdb-input-init class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control form-control-lg"
+              <input type="email" formControlName="Usuariocorreo_electronico" id="form3Example3" class="form-control form-control-lg"
                 placeholder="Introduzca correo electrónico" />
               <label class="form-label" for="form3Example3">Dirección de correo electrónico</label>
             </div>
   
             <!-- Password input -->
             <div data-mdb-input-init class="form-outline mb-3">
-              <input type="password" id="form3Example4" class="form-control form-control-lg"
+              <input type="password" formControlName="Usuariocontrasena" id="form3Example4" class="form-control form-control-lg"
                 placeholder="Introducir la contraseña" />
               <label class="form-label" for="form3Example4">Contraseña</label>
             </div>
@@ -52,8 +43,7 @@
             </div>
   
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" data-mdb-button-init data-mdb-ripple-init class="boton-iniciar"
-                >Iniciar</button>
+              <button type="submit" class="boton-iniciar">Iniciar</button>
               <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta?
                  <a routerLink="/register" class="link-danger cursor-pointer"> Registrar</a></p>
             </div>

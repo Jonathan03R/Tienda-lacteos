@@ -1,0 +1,133 @@
+<section class="pedidos">
+    <div class="container pb-5">
+        <div style="padding-left: 20px;">
+            <button class="boton-regresar" routerLink="/dashboard/products">regresar</button>
+        </div>
+
+        <div class="row">
+
+            <form class="col-8 formPedido" (ngSubmit)="registrarPedido(pedidoForm)" #pedidoForm="ngForm">
+                <h2>Finalizar Compra</h2>
+                <p>Revisa y completa tus datos para finalizar tu pedido.</p>
+                <div class="mb-4">
+                    <div class="input-group ">
+                        <span class="input-group-text" id="basic-addon1">Dni</span>
+                        <input type="text" class="form-control" id="dni" name="dni" ngModel pattern="^[0-9]*$" minlength="8"
+                            aria-label="Username" aria-describedby="basic-addon1" required>
+                    </div>
+                    <div *ngIf="pedidoForm.controls['dni']?.errors?.['pattern']" class="text-danger">El DNI debe contener
+                        solo números.</div>
+                    <div *ngIf="pedidoForm.controls['dni']?.errors?.['minlength']" class="text-danger">El DNI debe tener al
+                        menos 8 caracteres.</div>
+                    <div *ngIf="pedidoForm.controls['dni']?.errors?.['required'] && pedidoForm.controls['dni'].touched"
+                        class="text-danger">El DNI es obligatorio.</div>
+                </div>
+                <div class="mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Nombres y Apellidos</span>
+                        <input type="text" id="nombre" name="nombre" aria-label="nombres" class="form-control" ngModel
+                            required>
+                        <input type="text" id="apellido" name="apellido" aria-label="apellidos" class="form-control" ngModel
+                            required>
+                    </div>
+                    <div *ngIf="pedidoForm.controls['nombre']?.errors?.['required'] && pedidoForm.controls['nombre'].touched" class="text-danger">Ingrese su nombre</div>
+                    <div *ngIf="pedidoForm.controls['apellido']?.errors?.['required'] && pedidoForm.controls['apellido'].touched" class="text-danger">Ingrese su apellid</div>
+                </div>
+                <div class="mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Dirección</span>
+                        <input type="text" class="form-control" id="direccion" name="direccion" aria-label="direccion"
+                            ngModel required>
+                    </div>
+
+                    <div *ngIf="pedidoForm.controls['direccion']?.errors?.['required'] && pedidoForm.controls['direccion'].touched" class="text-danger">La dirección es obligatoria.</div>
+                </div>
+                <div class="mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Telefono</span>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" aria-label="telefono" ngModel pattern="^[0-9]*$" minlength="9"
+                            required>
+                    </div>
+                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['pattern']" class="text-danger">El teléfono debe contener solo números.</div>
+                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['minlength']" class="text-danger">El teléfono debe tener al menos 9 caracteres.</div>
+                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['required'] && pedidoForm.controls['telefono'].touched" class="text-danger">El teléfono es obligatorio.</div>
+                </div>
+                <div class="mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Email</span>
+                        <input type="email" class="form-control" id="correo" name="correo" aria-label="correo" ngModel
+                            required email>
+                    </div>
+
+                    <div *ngIf="pedidoForm.controls['correo']?.errors?.['email']" class="text-danger">El email no es válido.</div>
+                    <div *ngIf="pedidoForm.controls['correo']?.errors?.['required'] && pedidoForm.controls['correo'].touched" class="text-danger">El email es obligatorio.</div>
+                </div>
+
+                <div class="input-group mb-4 d-flex flex-column">
+                    <span>Metodo de pago:</span>
+                    <div class="grupoBotones mt-3">
+                        <!-- <button>Tarjeta</button>
+                        <button>Transferencia</button> -->
+
+                        <div class="radio-inputs">
+                            <label>
+                                <input class="radio-input" type="radio" name="metodoPago" value="1" ngModel>
+                                <span class="radio-tile">
+                                    <span class="radio-label">Tarjeta</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input class="radio-input" type="radio" name="metodoPago" value="2" ngModel>
+                                <span class="radio-tile">
+                                    <span class="radio-label">Transferencia</span>
+                                </span>
+                            </label>
+                            <!-- <label>
+                                <input class="radio-input" type="radio" name="engine">
+                                <span class="radio-tile">
+                                    <span class="radio-label">Car</span>
+                                </span>
+                            </label> -->
+                        </div>
+                        <div *ngIf="pedidoForm.controls['metodoPago']?.errors?.['required'] && pedidoForm.controls['metodoPago'].touched" class="text-danger">Seleccione un método de pago.</div>
+                    </div>
+                </div>
+                <button class="mt-4 btn-registrarPedido btn btn-primary" type="submit">registrar</button>
+
+            </form>
+            <div class="CompraResumen col">
+                <div class="offcanvas-body">
+                    @for (producto of productosCarrito; track $index) {
+                    <h5>{{producto.ProductoNombre}}</h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex">
+                            <div class="imagenProducto">
+                                <img class="imgProductos" [src]="producto.ProductoFoto" alt="producto">
+                            </div>
+                            <div>
+                                <p>{{producto.ProductoDescripcion}}</p>
+                                <div class="d-flex align-items-center price">
+                                    <!-- <p class="precioPro"> S/. {{ producto.ProductoPrecio }}</p> -->
+                                    <p class="fw-bold">Cantidad: {{ producto.quantity }}</p>
+                                </div>
+                                <p>Sub Total: S/.{{ producto.ProductoPrecio * producto.quantity! }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    }
+                </div>
+
+                <div class="offcanvas-footer border-top d-flex justify-content-between">
+                    <div class="d-flex  align-items-center ">
+                        <h5 style="margin-right: 50px;" class="offcanvas-title" id="offcanvasExampleLabel"> Total: </h5>
+                        <h5 style="margin-bottom: 0;">S/. {{calcularTotal()}} </h5>
+                    </div>
+                    <!-- <button *ngIf="productosCarrito.length > 0" routerLink="/pedido"
+                        class="Boton-Comprar ">Comprar</button> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

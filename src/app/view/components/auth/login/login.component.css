@@ -26,6 +26,24 @@
   height: calc(100% - 73px);
 }
 
+.googleIco {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: #fff;
+  border-radius: 50%;
+  border: solid 2px #14aa4e;
+  width: 55px ;
+  height: 55px;
+  transition: all 0.2s;
+}
+
+.googleIco:hover {
+  background-color: #14aa4e;
+  color: #000;
+}
+
 @media (max-width: 450px) {
   .h-custom {
     height: 100%;

@@ -11,7 +11,7 @@
 
                 <!-- logo -->
                 <div class="logo" (click)="redirectToPantallaCarga() " style="cursor: pointer;">
-                    <img src="../../../../assets/logo.png" alt="" style="height: 50px;" class="me-3">
+                    <img src="../../../../assets/logoEmpresa.png" alt="" style="height: 50px;" class="me-3">
                     <a class="navbar-brand text-uppercase fs-3 d-none d-lg-block">san Jose</a>
                 </div>
             </div>
@@ -39,12 +39,23 @@
                 </div>
             </div>
             <div class="iconos">
-                <a><fa-icon [icon]="faHeart"></fa-icon> </a>
-                <a routerLink="/login"><fa-icon [icon]="faUser"></fa-icon></a>
+                <!-- <a><fa-icon [icon]="faHeart"></fa-icon> </a> -->
+                <!-- <a routerLink="/login"><fa-icon [icon]="faUser"></fa-icon></a> -->
                 <!-- shop -->
-                <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
-                    aria-controls="offcanvasShop"><fa-icon [icon]="faCartShopping"></fa-icon></a>
+                <!-- <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
+                    aria-controls="offcanvasShop"><fa-icon [icon]="faCartShopping"></fa-icon></a> -->
+                <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasShop" role="button"
+                    aria-controls="offcanvasShop" class=" position-relative">
+                    <fa-icon [icon]="faCartShopping"></fa-icon>
+                    @if (this.productosCarrito.length > 0) {
+                        <span class=" position-absolute top-0 start-80 translate-middle badge rounded-pill bg-danger">
+                            {{this.productosCarrito.length }}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    }
+                </a>
             </div>
+
 
 
         </div>
@@ -59,27 +70,31 @@
             @for (producto of productosCarrito; track $index) {
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h5>{{producto.Productonombre}}</h5>
-                    <p>{{producto.Productodescripcion}}</p>
+                    <h5>{{producto.ProductoNombre}}</h5>
+                    <p>{{producto.ProductoDescripcion}}</p>
                     <div class="d-flex align-items-center price">
-                        <p class="precioPro"> S/. {{ producto.Productoprecio }}</p>
+                        <p class="precioPro"> S/. {{ producto.ProductoPrecio }}</p>
                         <p class="fw-bold">Cantidad: {{ producto.quantity }}</p>
                     </div>
-                    <p>Sub Total: S/.{{ producto.Productoprecio * producto.quantity! }}</p>
+                    <p>Sub Total: S/.{{ producto.ProductoPrecio * producto.quantity! }}</p>
                 </div>
-                
-                <button class="btn-delete" (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)"><fa-icon
-                    [icon]="faTrash"></fa-icon></button>
+
+                <button class="btn-delete"
+                    (click)="_carritoService.eliminarDelCarrito(producto.ProductoCodigo)"><fa-icon
+                        [icon]="faTrash"></fa-icon></button>
             </div>
             <hr>
             }
         </div>
 
-        <div class="offcanvas-footer border-top " style="padding-left: 25px;">
+        <div class="offcanvas-footer border-top d-flex justify-content-between"
+            style="padding-left: 25px; padding-top: 10px;">
             <div class="d-flex  align-items-center ">
-                <h5 style="margin-right: 50px;" class="offcanvas-title" id="offcanvasExampleLabel">  Total:      </h5>
+                <h5 style="margin-right: 50px;" class="offcanvas-title" id="offcanvasExampleLabel"> Total: </h5>
                 <h5 style="margin-bottom: 0;">S/. {{calcularTotal()}} </h5>
             </div>
+            <button *ngIf="productosCarrito.length > 0" routerLink="/pedido" class="Boton-Comprar " type="button"
+                data-bs-dismiss="offcanvas">Comprar</button>
         </div>
     </div>
 </div>

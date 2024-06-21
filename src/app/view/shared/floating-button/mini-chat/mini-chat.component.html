@@ -1,0 +1,28 @@
+<div class="mini-chat" *ngIf="isVisible">
+  <div class="chat-header">
+    Atención al Cliente
+    <a (click)="closeChat()"><fa-icon [icon]="faXmark"></fa-icon> </a>
+    <!-- <button (click)="closeChat()">X</button> -->
+  </div>
+  <div class="chat-body" #messageContainer>
+    <div class="preset-messages" >
+      <button *ngFor="let preset of presetMessages" (click)="sendPresetMessage(preset)">
+        {{ preset }}
+      </button>
+    </div>
+    <div class="messages">
+      <div *ngFor="let message of messages" [ngClass]="{'user-message': message.user, 'bot-message': !message.user}">
+        {{ message.text }}
+      </div>
+    </div>
+  </div>
+  <div class="chat-footer">
+
+    <div class="d-flex align-items-center">
+      <input class="imputMensage" type="text" [(ngModel)]="userInput" placeholder="Escribe un mensaje..." />
+      <i class="fa-light fa-paper-plane-top"></i>
+      <a (click)="sendMessage()" ><img class="iconos" src="../../../../../assets/icons/enviar-mensaje.png" alt=""></a>
+      <!-- <button (click)="sendMessage()">Enviar</button> -->
+    </div>
+  </div>
+</div>

@@ -3,6 +3,201 @@
   color: #fff;
   min-height: 100vh;
 }
+
+.list-product {
+  margin-bottom: 50px;
+}
+
+.imgProductos {
+  width: 280px;
+  border-radius: 15px;
+  height: auto;
+  object-fit: cover;
+}
+
+.tituloProducto {
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+
+.form button {
+  border: none;
+  background: none;
+  color: #8b8ba7;
+}
+
+/* styling of whole input container */
+.form {
+  --timing: 0.3s;
+  --width-of-input: 200px;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg, #fff);
+}
+
+/* styling of Input */
+.input {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+
+/* styling of animated border */
+.form:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+
+.form:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+
+.form:focus-within:before {
+  transform: scale(1);
+}
+
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* close button shown when typing */
+input:not(:placeholder-shown)~.reset {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* sizing svg icons */
+.form svg {
+  width: 17px;
+  margin-top: 3px;
+}
+
+
+
+
+.form button {
+  border: none;
+  background: none;
+  color: #8b8ba7;
+}
+
+/* styling of whole input container */
+.form {
+  --timing: 0.3s;
+  --width-of-input: 80%;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg, #fff);
+}
+
+/* styling of Input */
+.input {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+
+/* styling of animated border */
+.form:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+
+/* Hover on Input */
+.form:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+
+/* here is code of animated border */
+.form:focus-within:before {
+  transform: scale(1);
+}
+
+/* styling of close button */
+/* == you can click the close button to remove text == */
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* close button shown when typing */
+input:not(:placeholder-shown)~.reset {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* sizing svg icons */
+.form svg {
+  width: 17px;
+  margin-top: 3px;
+}
+
 /* .wrapper {
   height: 30px;
   min-width: 100px;
@@ -37,18 +232,20 @@
 
 .list-product {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid de columnas autoajustables */
-  grid-gap: 30px; /* Margen entre las columnas */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Grid de columnas autoajustables */
+  grid-gap: 30px;
+  /* Margen entre las columnas */
 }
 
 .list-product .box {
-  background-color: #151515;
+  background-color: #15151538;
   border-radius: 20px;
   padding: 20px;
   transition: all 0.2s;
 }
 
-.list-product .box:hover{
+.list-product .box:hover {
   transform: scale(1.007);
   box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.505);
 
@@ -56,6 +253,7 @@
 
 .list-product .box img {
   height: 180px;
+  width: 250px;
 }
 
 .iconos a {
@@ -69,14 +267,15 @@
   font-size: 30px;
   color: #eee;
   cursor: pointer;
-  margin-right: 30px; 
-  margin-left: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
   transition: all .1s;
 
 }
+
 .iconos .btn-carrito :active {
   /* transform: scale(1.2); */
-  color:#0aa850;
+  color: #0aa850;
 }
 
 
@@ -112,15 +311,16 @@ input[type=number]::-webkit-outer-spin-button {
 .number-input,
 .number-input * {
   box-sizing: border-box;
-  
+
 }
 
 .quantity:focus {
-  outline: none; /* Quita el borde de enfoque */
+  outline: none;
+  /* Quita el borde de enfoque */
 }
 
 .number-input button {
-  outline:none;
+  outline: none;
   -webkit-appearance: none;
   background-color: transparent;
   border: none;
@@ -157,4 +357,32 @@ input[type=number]::-webkit-outer-spin-button {
   height: 2rem;
   font-weight: bold;
   text-align: center;
+}
+
+/* AGOTADO CINTA ROJA  */
+
+.ribbon-wrapper {
+  position: absolute;
+  top: -4px;
+  right: -3px;
+  overflow: hidden;
+  width: 114px;
+  height: 104px;
+}
+
+.ribbon {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 16px;
+  transform: rotate(45deg);
+  position: relative;
+  padding: 6px 0px;
+  left: 1px;
+  top: 28px;
+  width: 149px;
+  background-color: red;
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
 }

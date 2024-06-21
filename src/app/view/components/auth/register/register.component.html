@@ -1,68 +1,61 @@
-<section class="vh-100 text-white d-flex flex-column align-items-center justify-content-center"
-    style="border: 2px solid red;">
+<section class="vh-100 text-white d-flex flex-column align-items-center justify-content-center">
     <div class="container-fluid pt-2 h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            
+
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form>
+                <form [formGroup]="formRegister" (ngSubmit)="registrar()">
                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                         <p class="lead fw-normal mb-0 me-3">Registrate con</p>
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init
-                            class="btn btn-success btn-floating mx-1">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init
-                            class="btn btn-success btn-floating mx-1">
-                            <i class="fab fa-twitter"></i>
-                        </button>
-
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init
-                            class="btn btn-success btn-floating mx-1">
-                            <i class="fab fa-linkedin-in"></i>
-                        </button>
+                       
+                            <a class="googleIco" (click)="iniciarSesionConGoogle()"><fa-icon [icon]="faGoogle"></fa-icon></a>
+                     
+ 
                     </div>
-
                     <div class="divider d-flex align-items-center my-4">
                         <p class="text-center fw-bold mx-3 mb-0">Or</p>
                     </div>
+
+                    <!-- nomebres y apellido -->
+
                     <div class="row form-outline mb-4">
                         <div data-mdb-input-init class=" col-md-6">
-                            <input type="text" formControlName="names" class="form-control form-control-lg"  placeholder="Nombres" id="validationDefault01"
-                                required>
+                            <input type="text" formControlName="UsuarioNombre" class="form-control form-control-lg"
+                                placeholder="Nombres" id="validationDefault01" required>
 
                         </div>
                         <div data-mdb-input-init class="col-md-6">
 
-                            <input type="text" formControlName="lastNames"  placeholder="Apellidos" class="form-control form-control-lg" id="validationDefault02"
-                                required>
-            
+                            <input type="text" formControlName="UsuarioApellido" placeholder="Apellidos"
+                                class="form-control form-control-lg" id="validationDefault02" required>
+
                         </div>
                     </div>
-
+                    
+                    <!-- Telefono -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="tel" formControlName="UsuarioTelefono" id="form3Example6" class="form-control form-control-lg"
+                            placeholder="Telefono" required>
+                    </div>
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                        <input type="email" formControlName="Usuariocorreo_electronico" id="form3Example3" class="form-control form-control-lg"
                             placeholder="Introduzca correo electrónico" />
-       
-                    </div>
 
+                    </div>
                     <!-- Password input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="password" id="form3Example4" class="form-control form-control-lg"
+                        <input type="password" formControlName="Usuariocontrasena" id="form3Example4" class="form-control form-control-lg"
                             placeholder="Introducir una contraseña" />
                         <!-- <label class="form-label" for="form3Example4">Contraseña</label> -->
                     </div>
                     <!-- Password input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="password" id="form3Example5" class="form-control form-control-lg"
+                        <input type="password" formControlName="UsuarioRepetirContrasena" id="form3Example5" class="form-control form-control-lg"
                             placeholder="confirmar contraseña" />
                     </div>
 
-
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init
-                            class="boton-iniciar">Registrar</button>
+                        <button type="submit" class="boton-iniciar">Registrar</button>
                         <p class="small fw-bold mt-2 pt-1 mb-0">¿Ya tienes una cuenta? <a routerLink="/login"
                                 class="link-danger"> Logearse</a></p>
                     </div>

@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-noticias',
+  selector: 'app-inicio',
   standalone: true,
   imports: [
     CommonModule,
   ],
-  templateUrl: './noticias.component.html',
-  styleUrl: './noticias.component.css',
+  templateUrl: './inicio.component.html',
+  styleUrl: './inicio.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class NoticiasComponent { }
+export default class InicioComponent { }

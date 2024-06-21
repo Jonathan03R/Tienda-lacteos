@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from '../../shared/nav-bar/nav-bar.component';
 import { ProductosService } from '../../../controller/service/productos.service';
-import { FlooterComponent } from '../../shared/Flooter/Flooter.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
+import { FloatingButtonComponent } from '../../shared/floating-button/floating-button.component';
 
 @Component({
   selector: 'app-principal',
@@ -12,7 +13,8 @@ import { FlooterComponent } from '../../shared/Flooter/Flooter.component';
     CommonModule,
     RouterModule,
     NavBarComponent,
-    FlooterComponent
+    FooterComponent,
+    FloatingButtonComponent
   ],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css',

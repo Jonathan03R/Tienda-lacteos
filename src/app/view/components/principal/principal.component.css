@@ -1,3 +1,7 @@
-:host {
-  display: block;
+app-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegúrate de que este valor sea mayor que el z-index de otros elementos */
 }
