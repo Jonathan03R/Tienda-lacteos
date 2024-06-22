@@ -9,15 +9,15 @@
             </div>
         </div>
         <ul class="sidebar-nav">
-                @for (item of menuItems; track $index) {
-                    <li class="sidebar-item" style="cursor: pointer;">
-                        <a class="sidebar-link" [routerLink]="item.path" routerLinkActive="active">
-                            <i class="lni lni-user"></i>
-                            <span>{{item.title}}</span>
-                            
-                        </a>
-                    </li>
-                    }
+            @for (item of menuItems; track $index) {
+            <li class="sidebar-item" style="cursor: pointer;">
+                <a class="sidebar-link" [routerLink]="item.path" routerLinkActive="active">
+                    <i class="lni lni-user"></i>
+                    <span>{{item.title}}</span>
+
+                </a>
+            </li>
+            }
             <!-- <li class="sidebar-item">
                 <a class="sidebar-link">
                     <i class="lni lni-user"></i>
@@ -39,7 +39,7 @@
                     </li>
                 </ul>
             </li> -->
-            
+
         </ul>
         <div class="sidebar-footer">
             <a class="sidebar-link" (click)="cerrarSesion()">
@@ -49,7 +49,7 @@
         </div>
     </aside>
     <div class="main p-3">
-        <router-outlet/> 
+        <router-outlet />
     </div>
 </div>
 <!-- 
