@@ -30,6 +30,16 @@ export default class PrincipalComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
       this.usuario = user;
+      // if (user){
+      //   console.log("Email: ", user.email);
+      //   console.log("Display Name: ", user.displayName);
+      //   console.log("Photo URL: ", user.photoURL);
+      //   console.log("UID: ", user.uid);
+      //   console.log("Email Verified: ", user.emailVerified);
+      //   console.log("Phone Number: ", user.phoneNumber);
+      //   console.log("Provider ID: ", user.providerId);
+      //   console.log("Metadata: ", user.metadata);
+      // }
       if (user?.email) {
         this.obtenerEmpleado(user.email);
       }
@@ -42,6 +52,11 @@ export default class PrincipalComponent implements OnInit {
         this.empleado = empleado;
         this.empleadosService.addEmpleado(empleado);
         console.log("Empleado encontrado: ", empleado);
+
+        if (this.empleado?.EmpleadoEstado === 'D'){
+          alert('No tienes permiso por favor comunicate con un administrador:')
+          this.cerrarSesion();
+        }
       },
       error => {
         console.error("Error al obtener empleado: ", error);

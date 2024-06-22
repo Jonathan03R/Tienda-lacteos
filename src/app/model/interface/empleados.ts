@@ -6,5 +6,6 @@ export interface Empleados
     Empleadodireccion: string;
     Empleadotelefono: string;
     Empleadoemail: string;
+    EmpleadoEstado: string;
     Cargo: string;
 }
