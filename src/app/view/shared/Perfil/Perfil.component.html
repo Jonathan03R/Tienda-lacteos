@@ -1,8 +1,17 @@
-<div class="vh-100 container text-white">
-    <button>regresar a la pantalla anterior</button>
-    <h1>Info del usuario logeado</h1>
 
-    <button (click)="cerrarSesion()">cerrar session</button>
+    <div class="container mt-5">
+        <h1 class="mb-4">Perfil del Empleado</h1>
 
+        @for (empl of empleados; track $index) {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{empl.Empleadonombre}} {{empl.Empleadoapellidos}}</h5>
+                <p class="card-text"><strong>Email:</strong> {{empl.Empleadoemail}}</p>
+                <p class="card-text"><strong>Teléfono:</strong> {{empl.Empleadotelefono}}</p>
+                <p class="card-text"><strong>Cargo:</strong> {{empl.Cargo}}</p>
+                
+            </div>
+        </div>
+        }
+    </div>
 
-</div>
