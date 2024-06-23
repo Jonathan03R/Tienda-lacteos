@@ -6,44 +6,48 @@
             </path>
         </svg>
     </button> -->
-
-    <h2 class="my-2 text-center">Lista de Clientes</h2>
-    <div class="row">
-        <!-- Lista de clientes -->
-        <div [class.col-md-8]="selectedCliente" [class.col-md-12]="!selectedCliente" class="transition-width">
-            <div class="columnasClientes">
-                <div *ngFor="let cliente of clientes" class="custom-col" (click)="seleccionarCliente(cliente)">
-                    <div [class.selected]="cliente === selectedCliente" class="card mb-4 shadow-sm h-100">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">{{ cliente.ClienteNombre }} {{ cliente.ClienteApellidos }}</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <p class="card-text mb-1"><strong>DNI:</strong> {{ cliente.ClienteDni }}</p>
-                            <p class="card-text mb-1"><strong>Dirección:</strong> {{ cliente.ClienteDireccion }}</p>
-                            <p class="card-text mb-1"><strong>Email:</strong> {{ cliente.ClienteEmail }}</p>
-                            <p class="card-text mb-1"><strong>Teléfono:</strong> {{ cliente.ClienteTelefono }}</p>
-                            <p class="card-text mb-1"><strong>Compras totales:</strong> {{ cliente.TotalCompras }}</p>
-                        </div>
-                        <div class="card-footer text-muted">
-                            Cliente desde: {{ formatFecha(cliente.ClienteFecha) }}
+    <button class="btn-buscar-cliente" (click)="activarBuscarClienteDni()">{{ mostrarBuscarCliente ? 'Ocultar Búsqueda' : 'Buscar Cliente' }}</button>
+    @if (!this.mostrarBuscarCliente) {
+        <h2 class="my-2 text-center">Lista de Clientes</h2>
+        <div class="row">
+            <!-- Lista de clientes -->
+            <div [class.col-md-8]="selectedCliente" [class.col-md-12]="!selectedCliente" class="transition-width">
+                <div class="columnasClientes">
+                    <div *ngFor="let cliente of clientes" class="custom-col" (click)="seleccionarCliente(cliente)">
+                        <div [class.selected]="cliente === selectedCliente" class="card mb-4 shadow-sm h-100">
+                            <div class="card-header text-white">
+                                <h5 class="card-title mb-0">{{ cliente.ClienteNombre }} {{ cliente.ClienteApellidos }}</h5>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <p class="card-text mb-1"><strong>DNI:</strong> {{ cliente.ClienteDni }}</p>
+                                <p class="card-text mb-1"><strong>Dirección:</strong> {{ cliente.ClienteDireccion }}</p>
+                                <p class="card-text mb-1"><strong>Email:</strong> {{ cliente.ClienteEmail }}</p>
+                                <p class="card-text mb-1"><strong>Teléfono:</strong> {{ cliente.ClienteTelefono }}</p>
+                                <p class="card-text mb-1"><strong>Compras totales:</strong> {{ cliente.TotalCompras }}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Cliente desde: {{ formatFecha(cliente.ClienteFecha) }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Estadísticas del cliente -->
-        <div *ngIf="selectedCliente" class="col-md-4">
-            <div class="stats-container">
-                <button class="btn btn-secondary mb-3" (click)="deseleccionarCliente()">Cerrar</button>
-                <h3>Estadísticas de {{ selectedCliente.ClienteNombre }} {{ selectedCliente.ClienteApellidos }}</h3>
-                <p><strong>Historial de compras:</strong></p>
-
-                <p>Cantidad de pedidos: {{selectedCliente.CantidadPedidos}}</p>
-                <p>Categorias Compradas:{{selectedCliente.CategoriasMasCompradas}}</p>
-                <p>Productos Comprados: {{selectedCliente.ProductosComprados}}</p>
-                <p>Total de compras: ${{selectedCliente.TotalCompras}}</p>
+    
+            <!-- Estadísticas del cliente -->
+            <div *ngIf="selectedCliente" class="col-md-4">
+                <div class="stats-container">
+                    <button class="btn btn-secondary mb-3" (click)="deseleccionarCliente()">Cerrar</button>
+                    <h3>Estadísticas de {{ selectedCliente.ClienteNombre }} {{ selectedCliente.ClienteApellidos }}</h3>
+                    <p><strong>Historial de compras:</strong></p>
+    
+                    <p>Cantidad de pedidos: {{selectedCliente.CantidadPedidos}}</p>
+                    <p>Categorias Compradas:{{selectedCliente.CategoriasMasCompradas}}</p>
+                    <p>Productos Comprados: {{selectedCliente.ProductosComprados}}</p>
+                    <p>Total de compras: ${{selectedCliente.TotalCompras}}</p>
+                </div>
             </div>
         </div>
-    </div>
+    }@else {
+        <app-envios></app-envios>
+    }
 </div>

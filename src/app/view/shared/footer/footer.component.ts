@@ -22,13 +22,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </div> -->
 
       <div class="row">
-        <ul>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Our Services</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Career</a></li>
-        </ul>
+        <h5>Acerca de:</h5>
+        <p>empresa de lacteos etc etc etc</p>
       </div>
 
       <div class="text-center">

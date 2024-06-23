@@ -28,6 +28,18 @@
 .filter:hover svg {
   fill: white;
 } */
+.btn-buscar-cliente {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+  background-color: #0e2238;
+  height: 35px;
+  border-radius: 10px;
+  color: #ddd;
+  border: none;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.36);
+}
 
 
 .columnasClientes{
@@ -59,7 +71,7 @@
 }
 
 .card.selected {
-  border: 2px solid #007bff;
+  border: 2px solid #007bff88;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -73,7 +85,7 @@
 }
 
 .card-header {
-  background-color: #007bff;
+  background-color: #0e2238;
   color: #fff;
   text-align: center;
 }

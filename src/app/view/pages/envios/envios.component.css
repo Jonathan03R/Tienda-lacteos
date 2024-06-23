@@ -8,11 +8,12 @@
   font-weight: bold;
 }
 
-.boton-enviar {
-  border: none;
+.btn-enviar {
+  /* border: none;
   margin-left: 15px;
-  border-radius: 8px;
+  border-radius: 8px; */
   font-weight: bold;
+  background-color: #0e2238a0;
   height: 35px;
   width: 95px;
 }

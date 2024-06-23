@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { MostrarClientes } from '../../../../model/interface/cliente-info';
 import { ClienteInfoService } from '../../../../controller/service/pedidos/clienteInfo.service';
+import EnviosComponent from '../../../pages/envios/envios.component';
 
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, EnviosComponent],
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +18,17 @@ export default class ClientesComponent {
   public selectedCliente: MostrarClientes | null = null;
   private originalIndex: number | null = null;
 
+  mostrarBuscarCliente : boolean = false;
+
+  activarBuscarClienteDni(){
+    this.mostrarBuscarCliente = !this.mostrarBuscarCliente;
+    // if(this.mostrarBuscarCliente){
+    //   this.mostrarBuscarCliente= false;
+    // }else {
+    //   this.mostrarBuscarCliente= true
+    // }
+    
+  }
 
   private clienteInfoService = inject (ClienteInfoService);
   cdr = inject(ChangeDetectorRef);
