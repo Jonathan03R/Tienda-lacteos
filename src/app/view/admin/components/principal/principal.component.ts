@@ -73,7 +73,19 @@ export default class PrincipalComponent implements OnInit {
       path: route.path,
       title: route.title
   }));
+  public iconItems = [
+    'lni lni-home',
+    'lni lni-dropbox', 
+    'lni lni-network',
+    'lni lni-bubble',  
+    'lni lni-user',
+    'lni lni-pencil-alt'  
+  ];
 
+  public combinedMenuItems = this.menuItems.map((item, index) => ({
+    ...item,
+    icon: this.iconItems[index] ?? 'lni lni-default'  
+  }));
 
   ngAfterViewInit() {
     const hamBurger = document.querySelector(".toggle-btn") as HTMLElement;

@@ -9,10 +9,10 @@
             </div>
         </div>
         <ul class="sidebar-nav">
-            @for (item of menuItems; track $index) {
+            @for (item of combinedMenuItems; track $index) {
             <li class="sidebar-item" style="cursor: pointer;">
                 <a class="sidebar-link" [routerLink]="item.path" routerLinkActive="active">
-                    <i class="lni lni-user"></i>
+                    <i class="{{item.icon}}"></i>
                     <span>{{item.title}}</span>
 
                 </a>
