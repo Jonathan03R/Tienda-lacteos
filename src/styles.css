@@ -4,16 +4,33 @@
     /* color: black; */
 }
 
-html,
-body {
-    height: 100%;   
-    color: black; 
-
-}
-
 body {
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Chrome */
 }
+
+
+/* .cdk-overlay-container {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+  } */
+  
+  .cdk-overlay-pane {
+    position: fixed !important;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
+  }
+  
+  /* .mat-snack-bar-container {
+    background-color: #ff5722 !important; 
+    color: white; /
+  }
+  
+  .mat-mdc-snack-bar-actions button {
+    color: white;
+  }
+   */

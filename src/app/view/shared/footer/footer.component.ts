@@ -22,8 +22,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </div> -->
 
       <div class="row">
-        <h5>Acerca de:</h5>
-        <p>empresa de lacteos etc etc etc</p>
+        <h5>Asociacion de productores:</h5>
+        <p>Descubre la frescura y calidad de nuestros productos lácteos, hechos con el mayor cuidado para ofrecerte el mejor sabor y nutrición.</p>
       </div>
 
       <div class="text-center">

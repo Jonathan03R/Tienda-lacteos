@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   OnInit,
-  inject,
+  Renderer2,
+  ViewChild,
 } from '@angular/core';
 import { Categoria, Inventario } from '../../../../model/interface/inventario';
 import { InventarioService } from '../../../../controller/service/inventario/inventario.service';
@@ -15,16 +17,18 @@ import {
   Validators,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-inventario',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,MatSnackBarModule],
   templateUrl: './inventario.component.html',
   styleUrl: './inventario.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class InventarioComponent implements OnInit {
+  @ViewChild('productImageInput', { static: false }) productImageInput!: ElementRef;
   inventario$: Observable<Inventario[]>;
   productForm: FormGroup;
   editProductForm: FormGroup;
@@ -32,31 +36,34 @@ export default class InventarioComponent implements OnInit {
   categorias: Categoria[] = [];
   currentImage: string | null = null;
 
-  productosFiltrados: Inventario[] = []; // Lista de productos filtrados
+  productosFiltrados: Inventario[] = []; 
   filterProperty: string = '';
 
   alertMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
-    private inventarioService: InventarioService
+    private inventarioService: InventarioService,
+    private renderer: Renderer2,
+    private snackBar: MatSnackBar
+    
   ) {
     this.productForm = this.fb.group({
-      ProductoNombre: ['', Validators.required],
+      ProductoNombre: ['', [Validators.required, Validators.minLength(3)]],
       ProductoDescripcion: ['', Validators.required],
-      ProductoPrecio: [0, Validators.required],
-      ProductoCantidad: [0, Validators.required],
+      ProductoPrecio:[0, [Validators.required, Validators.min(1)]],
+      ProductoCantidad: [0, [Validators.required, Validators.min(1)]],
       Producto_TipoProductoCodigo: [0, Validators.required],
-      image: [null],
+      image: [null, Validators.required], 
     });
 
     this.editProductForm = this.fb.group({
-      ProductoNombre: ['', Validators.required],
+      ProductoNombre: ['', [Validators.required, Validators.minLength(3)]],
       ProductoDescripcion: ['', Validators.required],
-      ProductoPrecio: [0, Validators.required],
-      ProductoCantidad: [0, Validators.required],
+      ProductoPrecio: [0, [Validators.required, Validators.min(1)]],
+      ProductoCantidad: [0,  [Validators.required, Validators.min(1)]],
       Producto_TipoProductoCodigo: [0, Validators.required],
-      ProductoFoto: [null],
+      ProductoFoto: [null, Validators.required],
     });
     this.inventario$ = this.inventarioService.obtenerInventario();
   }
@@ -73,12 +80,16 @@ export default class InventarioComponent implements OnInit {
 
   onFileChange(event: any) {
     const file = event.target.files[0];
-    this.productForm.patchValue({
-      image: file,
-    });
-    this.editProductForm.patchValue({
-      ProductoFoto: file,
-    });
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.currentImage = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+  this.productForm.patchValue({
+    image: file,
+  });
   }
 
   cargarCategorias(): void {
@@ -96,7 +107,29 @@ export default class InventarioComponent implements OnInit {
     return item.ProductoCodigo;
   }
 
+  resetFileInput(): void {
+    if (this.productImageInput) {
+      this.renderer.setProperty(this.productImageInput.nativeElement, 'value', '');
+    }
+    this.currentImage = null;
+  }
+
+  ok(): void{
+    this.snackBar.open('Por favor complete todos los campos requeridos correctamente.', 'Cerrar', {
+      duration: 3000,
+      
+    });
+  }
   onSubmit(): void {
+
+    if (this.productForm.invalid) {
+      this.snackBar.open('Por favor complete todos los campos requeridos correctamente.', 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'end' // 'start', 'center', 'end', 'left', 'right'
+      });
+      return;
+    }
+
     const formData = new FormData();
     Object.keys(this.productForm.controls).forEach((key) => {
       formData.append(key, this.productForm.get(key)?.value);
@@ -106,6 +139,9 @@ export default class InventarioComponent implements OnInit {
       (response) => {
         console.log('Producto agregado:', response);
         this.inventarioService.actualizarInventario();
+        this.productForm.reset();
+        this.resetFileInput();
+        alert('Producto agregado')
         
       },
       (error) => {
@@ -117,7 +153,7 @@ export default class InventarioComponent implements OnInit {
   onEditSubmit(): void {
     if (this.selectedProduct) {
       const formData = this.editProductForm.value;
-      delete formData.ProductoFoto; // Remover el campo ProductoFoto
+      delete formData.ProductoFoto; 
       this.inventarioService
         .modificarInventario({
           ...formData,

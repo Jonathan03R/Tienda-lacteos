@@ -221,3 +221,4 @@ input:not(:placeholder-shown) ~ .reset {
   max-height: 70vh;
   overflow-y: auto;
 }
+

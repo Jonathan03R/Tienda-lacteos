@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // export const BASE_URL = 'http://192.168.0.100:8080';
 export const BASE_URL = 'http://localhost:8080';
@@ -24,6 +25,6 @@ export const appConfig: ApplicationConfig = {
         messagingSenderId: '653223671625',
       })
     ),
-    provideAuth(() => getAuth()),
+    provideAuth(() => getAuth()), provideAnimationsAsync(),
   ],
 };
