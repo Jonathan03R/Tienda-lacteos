@@ -59,23 +59,37 @@ export class AuthService {
 
 
 
-   async handleGoogleRedirect(): Promise<string | null> {
+  //  async handleGoogleRedirect(): Promise<string | null> {
+  //   try {
+  //     const result = await getRedirectResult(this.auth);
+  //     if (result?.user) {
+  //       const email = result.user.email;
+  //       if (email) {
+  //         const empleado = await this.empleadosService.buscarEmpleadoInfo(email).toPromise();
+  //         if (empleado) {
+  //           this.empleadosService.addEmpleado(empleado);
+  //         }
+  //         return email;
+  //       }
+  //     }
+  //     return null;
+  //   } catch (error) {
+  //     console.error('Error handling Google redirect', error);
+  //     return null;
+  //   }
+  // }
+
+  async handleGoogleRedirect(): Promise<string | null> {
     try {
       const result = await getRedirectResult(this.auth);
-      if (result?.user) {
-        const email = result.user.email;
-        if (email) {
-          const empleado = await this.empleadosService.buscarEmpleadoInfo(email).toPromise();
-          if (empleado) {
-            this.empleadosService.addEmpleado(empleado);
-          }
-          return email;
-        }
+      if (result) {
+        const email = result.user?.email || null;
+        return email;
       }
       return null;
     } catch (error) {
       console.error('Error handling Google redirect', error);
-      return null;
+      throw error;
     }
   }
 

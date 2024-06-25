@@ -20,10 +20,13 @@
         </svg>
       </button>
     </div>
-   <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#createModal" >agregar categorias</button>
+    <div class="d-flex align-content-end ">
+      <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#createModal">agregar categorias</button>
 
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" (click)="cargarCategorias()">Nuevo
-      Producto</button>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"
+        (click)="cargarCategorias()">Nuevo
+        Producto</button>
+    </div>
   </div>
   <div class="table-responsive table-scroll">
     <table class="table table-striped table-bordered">
@@ -94,7 +97,8 @@
           </div>
           <div class="mb-3">
             <label for="productImage" class="form-label">Imagen</label>
-            <input type="file" id="productImage" #productImageInput name="image" class="form-control" (change)="onFileChange($event)">
+            <input type="file" id="productImage" #productImageInput name="image" class="form-control"
+              (change)="onFileChange($event)">
           </div>
           <button type="submit" class="btn btn-primary">Guardar</button>
         </form>

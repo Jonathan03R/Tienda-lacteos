@@ -53,6 +53,8 @@ export default class PrincipalComponent implements OnInit {
         this.empleadosService.addEmpleado(empleado);
         console.log("Empleado encontrado: ", empleado);
 
+        
+
         if (this.empleado?.EmpleadoEstado === 'D'){
           alert('No tienes permiso por favor comunicate con un administrador:')
           this.cerrarSesion();
