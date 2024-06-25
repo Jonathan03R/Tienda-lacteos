@@ -20,7 +20,7 @@
         </svg>
       </button>
     </div>
-    <button class="btn btn-primary "  (click)="ok()" >agregar categorias</button>
+   <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#createModal" >agregar categorias</button>
 
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" (click)="cargarCategorias()">Nuevo
       Producto</button>
@@ -103,6 +103,32 @@
   </div>
 </div>
 
+
+<!-- para agregar categoria -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Agregar Categoría</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para agregar categoria -->
+        <form [formGroup]="categoriaForm" (ngSubmit)=" agregarNuevaCategoria()">
+          <div class="mb-3">
+            <label for="CategoriaNombre" class="form-label">Nombre</label>
+            <input type="text" id="CategoriaNombre" class="form-control" formControlName="TipoProductoNombre">
+          </div>
+          <div class="mb-3">
+            <label for="categoriaDescription" class="form-label">Descripción</label>
+            <input type="text" id="categoriaDescription" class="form-control" formControlName="TipoProductoDescripcion">
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal de Edición -->
 <div class="modal fade" #editModal id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
