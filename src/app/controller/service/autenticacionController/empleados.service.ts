@@ -53,4 +53,12 @@ export class EmpleadosService {
     this.saveToLocalStorage(this.empleadosList);
     this.empleadosSubject.next(this.empleadosList);
   }
+
+
+  // conseguir una lista de todos los empleados.
+
+  mostrarEmpleados(): Observable<Empleados[]> {
+    return this.http.get<Empleados[]>(`${BASE_URL}/empleados/empleadosMostrar`)
+  }
+
 }

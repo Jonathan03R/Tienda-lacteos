@@ -1,3 +1,17 @@
-:host {
-  display: block;
+.table {
+  margin-top: 20px;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
 }

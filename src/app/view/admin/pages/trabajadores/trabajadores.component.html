@@ -1,1 +1,49 @@
-<p>trabajadores works!</p>,
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Email</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Cargo</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (empleado of empleados; track $index) {
+              <tr>
+                <td>{{ empleado.EmpleadoCodigo }}</td>
+                <td>{{ empleado.Empleadonombre }}</td>
+                <td>{{ empleado.Empleadoapellidos }}</td>
+                <td>{{ empleado.Empleadodireccion }}</td>
+                <td>{{ empleado.Empleadotelefono }}</td>
+                <td>{{ empleado.Empleadoemail }}</td>
+                <td>
+                  <select [(ngModel)]="empleado.EmpleadoEstado" class="form-select">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="empleado.Cargo" class="form-select">
+                    <option value="Empleado">Empleado</option>
+                    <option value="Gerente">Gerente</option>
+                  </select>
+                </td>
+                <td>
+                  <button class="btn btn-primary">Guardar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
