@@ -10,7 +10,7 @@ import { Empleados } from '../../../model/interface/empleados';
 })
 export class EmpleadosService {
   private http = inject(HttpClient);
-  private empleadosList: Empleados[] = [];
+  private empleadosList: Empleados[] = this.loadFromLocalStorage();
   private empleadosSubject = new BehaviorSubject<Empleados[]>(this.empleadosList);
 
   constructor() {}
@@ -23,11 +23,34 @@ export class EmpleadosService {
 
   addEmpleado(empleado: Empleados) {
     this.empleadosList.push(empleado);
+    this.saveToLocalStorage(this.empleadosList);
+    this.empleadosSubject.next(this.empleadosList);
+  }
+
+  removeEmpleado(email: string) {
+    this.empleadosList = this.empleadosList.filter(e => e.Empleadoemail !== email);
+    this.saveToLocalStorage(this.empleadosList);
     this.empleadosSubject.next(this.empleadosList);
   }
 
 
+
   getEmpleados(): Observable<Empleados[]> {
     return this.empleadosSubject.asObservable();
+  }
+
+  private saveToLocalStorage(empleados: Empleados[]) {
+    localStorage.setItem('empleadosList', JSON.stringify(empleados));
+  }
+
+  private loadFromLocalStorage(): Empleados[] {
+    const data = localStorage.getItem('empleadosList');
+    return data ? JSON.parse(data) : [];
+  }
+
+  clearEmpleados() {
+    this.empleadosList = [];
+    this.saveToLocalStorage(this.empleadosList);
+    this.empleadosSubject.next(this.empleadosList);
   }
 }

@@ -28,7 +28,7 @@ export default class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
-    this.handleGoogleRedirect();
+    // this.handleGoogleRedirect();
     this.subscribeToAuthStateChanges();
   }
 
@@ -38,18 +38,18 @@ export default class RegisterComponent implements OnInit {
     });
   }
   
-  private handleGoogleRedirect() {
-    this.authService.handleGoogleRedirect().then(email => {
-      if (email) {
-        console.log('Usuario autenticado con el correo:', email);
-        // Aquí puedes usar el correo electrónico como desees, por ejemplo, guardarlo en una base de datos MySQL
-        // Luego puedes navegar a otra página si es necesario
-        // this.router.navigate(['/otra-pagina']);
-      }
-    }).catch(error => {
-      console.error('Error al manejar la redirección de Google', error);
-    });
-  }
+  // private handleGoogleRedirect() {
+  //   this.authService.handleGoogleRedirect().then(email => {
+  //     if (email) {
+  //       console.log('Usuario autenticado con el correo:', email);
+  //       // Aquí puedes usar el correo electrónico como desees, por ejemplo, guardarlo en una base de datos MySQL
+  //       // Luego puedes navegar a otra página si es necesario
+  //       // this.router.navigate(['/otra-pagina']);
+  //     }
+  //   }).catch(error => {
+  //     console.error('Error al manejar la redirección de Google', error);
+  //   });
+  // }
 
   private subscribeToAuthStateChanges() {
     this.authService.authState$.subscribe(user => {

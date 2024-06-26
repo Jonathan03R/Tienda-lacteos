@@ -11,7 +11,7 @@
         <ul class="sidebar-nav">
             @for (item of combinedMenuItems; track $index) {
             <li class="sidebar-item" style="cursor: pointer;">
-                <a class="sidebar-link" [routerLink]="item.path" routerLinkActive="active">
+                <a class="sidebar-link d-flex align-items-center" [routerLink]="item.path" routerLinkActive="active">
                     <i class="{{item.icon}}"></i>
                     <span>{{item.title}}</span>
 

@@ -23,35 +23,60 @@ export default class LoginComponent {
   private formBuilder = inject(FormBuilder);
   private firebaseErrorService = inject(FirebaseErrorService)
   private empleadosService  = inject(EmpleadosService)
-  ngOnInit(): void {
-  }
-  iniciarSesionConGoogle() {
-    this.authService.iniciarSesionConGoogle();
-    this.handleGoogleRedirect();
-    
-  }
 
-  async handleGoogleRedirect() {
-    const email = await this.authService.handleGoogleRedirect();
-    if (email) {
-      console.log('Usuario logeado con Google:', email);
-      this.buscarEmpleadoPorCorreo(email);
+  empleado: Empleados | null = null;
+
+  ngOnInit(): void {
+    // this.handleGoogleRedirect();
+  }
+  // iniciarSesionConGoogle() {
+  //   this.authService.iniciarSesionConGoogle();
+  //   // this.handleGoogleRedirect();
+    
+  // }
+  async iniciarSesionConGoogle() {
+    try {
+      const result = await this.authService.iniciarSesionConGoogle();
+      const email = result.user.email;
+      if (email) {
+        this.buscarEmpleadoPorCorreo(email);
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión con Google:', error);
+      alert(this.firebaseErrorService.handleFirebaseError(error));
     }
   }
-  
+
+  // async handleGoogleRedirect() {
+  //   const email = await this.authService.handleGoogleRedirect();
+  //   if (email) {
+  //     console.log('Usuario logeado con Google:', email);
+  //     this.buscarEmpleadoPorCorreo(email);
+  //   }
+  // }
+
   buscarEmpleadoPorCorreo(email: string) {
     this.empleadosService.buscarEmpleadoInfo(email).subscribe(
       empleado => {
+        this.empleado = empleado;
         this.empleadosService.addEmpleado(empleado);
-        console.log('Información del empleado:', empleado);
-        this._router.navigateByUrl('/perfil');
+        console.log('Información del empleado desde el login:', empleado);
+        if(this.empleado?.EmpleadoEstado == 'D'){
+          alert('No tienes permiso por favor comunicate con un administrador:')
+          this.authService.cerrarSesion();
+          this._router.navigateByUrl('login');
+          return;
+        }
+        this._router.navigateByUrl('/Empresa/home');
       },
       error => {
         console.error('Error al obtener información del empleado:', error);
+        alert('Solo personal autorizado');
+        this.authService.cerrarSesion();
       }
     );
   }
-  
+
 
   async login() {
     console.log('Estado del formulario login', this.formLogin.value);
