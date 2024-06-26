@@ -9,6 +9,7 @@ import { UserLogin, UserLoginForm } from '../../../../model/interface/user';
 import { FirebaseErrorService } from '../../../../controller/service/autenticacionController/firebase-error.service';
 import { EmpleadosService } from '../../../../controller/service/autenticacionController/empleados.service';
 import { Empleados } from '../../../../model/interface/empleados';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,8 @@ export default class LoginComponent {
   private formBuilder = inject(FormBuilder);
   private firebaseErrorService = inject(FirebaseErrorService)
   private empleadosService  = inject(EmpleadosService)
+  private snackBar = inject(MatSnackBar);
+
 
   empleado: Empleados | null = null;
 
@@ -43,7 +46,12 @@ export default class LoginComponent {
       }
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
-      alert(this.firebaseErrorService.handleFirebaseError(error));
+
+      this.snackBar.open(this.firebaseErrorService.handleFirebaseError(error), 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'center'
+      });
+      // alert(this.firebaseErrorService.handleFirebaseError(error));
     }
   }
 
@@ -62,7 +70,11 @@ export default class LoginComponent {
         this.empleadosService.addEmpleado(empleado);
         console.log('Información del empleado desde el login:', empleado);
         if(this.empleado?.EmpleadoEstado == 'D'){
-          alert('No tienes permiso por favor comunicate con un administrador:')
+          this.snackBar.open('No tienes permiso por favor comunicate con un administrador', 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center'
+          });
+          // alert('No tienes permiso por favor comunicate con un administrador:')
           this.authService.cerrarSesion();
           this._router.navigateByUrl('login');
           return;
@@ -71,7 +83,11 @@ export default class LoginComponent {
       },
       error => {
         console.error('Error al obtener información del empleado:', error);
-        alert('Solo personal autorizado');
+        this.snackBar.open('Solo personal autorizado', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center'
+        });
+        // alert('Solo personal autorizado');
         this.authService.cerrarSesion();
       }
     );

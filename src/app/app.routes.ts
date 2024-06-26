@@ -28,6 +28,7 @@ export const routes: Routes = [
             {path: 'perfil', loadComponent:() => import('./view/shared/Perfil/Perfil.component'),  title: 'Perfil'},
             {path: 'historial', loadComponent:() => import('./view/admin/pages/Historial/Historial.component'), title: 'Historial' },
             {path: 'trabajadores', loadComponent: () => import ('./view/admin/pages/trabajadores/trabajadores.component'), title: 'Trabajadores' },
+            {path: 'informes', loadComponent: () => import ('./view/admin/pages/informes/informes.component') , title: 'Informes' },
             { path: '', redirectTo: '/Empresa/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/Empresa/home', pathMatch: 'full' }
         ]

@@ -1,49 +1,44 @@
 <div class="container mt-5">
-    <div class="row">
-      <div class="col-12">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Código</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Dirección</th>
-              <th scope="col">Teléfono</th>
-              <th scope="col">Email</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Cargo</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (empleado of empleados; track $index) {
-              <tr>
-                <td>{{ empleado.EmpleadoCodigo }}</td>
-                <td>{{ empleado.Empleadonombre }}</td>
-                <td>{{ empleado.Empleadoapellidos }}</td>
-                <td>{{ empleado.Empleadodireccion }}</td>
-                <td>{{ empleado.Empleadotelefono }}</td>
-                <td>{{ empleado.Empleadoemail }}</td>
-                <td>
-                  <select [(ngModel)]="empleado.EmpleadoEstado" class="form-select">
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
-                  </select>
-                </td>
-                <td>
-                  <select [(ngModel)]="empleado.Cargo" class="form-select">
-                    <option value="Empleado">Empleado</option>
-                    <option value="Gerente">Gerente</option>
-                  </select>
-                </td>
-                <td>
-                  <button class="btn btn-primary">Guardar</button>
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  
+  <h1 class="mb-4 text-center">Lista de Empleados</h1>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Estado</th>
+        <th>Cargo</th>
+        <!-- <th>Acciones</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      @for (empleado of empleados; track empleado.EmpleadoCodigo) {
+        <tr>
+          <td>{{ empleado.EmpleadoCodigo }}</td>
+          <td>{{ empleado.Empleadonombre }}</td>
+          <td>{{ empleado.Empleadoapellidos }}</td>
+          <td>{{ empleado.Empleadodireccion }}</td>
+          <td>{{ empleado.Empleadotelefono }}</td>
+          <td>{{ empleado.Empleadoemail }}</td>
+          <td>
+            <select class="form-control" [(ngModel)]="empleado.EmpleadoEstado" (change)="actualizarEmpleado(empleado)">
+              <option value="A" [selected]="empleado.EmpleadoEstado === 'A'">Activo</option>
+              <option value="D" [selected]="empleado.EmpleadoEstado === 'D'">Inactivo</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-control" [(ngModel)]="empleado.Cargo" (change)="actualizarEmpleado(empleado)">
+              <option *ngFor="let cargo of cargos" [value]="cargo.CargoNombre">{{ cargo.CargoNombre }}</option>
+            </select>
+          </td>
+          <!-- <td>
+            <button class="btn btn-primary" (click)="actualizarEmpleado(empleado)">Guardar</button>
+          </td> -->
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

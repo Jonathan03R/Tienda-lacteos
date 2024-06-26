@@ -1,17 +1,26 @@
+/* trabajadores.component.css */
+
+.container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
 .table {
   margin-top: 20px;
 }
 
-.table td, .table th {
+.table th, .table td {
   vertical-align: middle;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+.thead-dark th {
+  background-color: #0e2238;
+  color: #fff;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
+.select-custom {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
 }

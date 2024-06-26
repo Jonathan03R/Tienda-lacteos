@@ -41,6 +41,7 @@ export default class PrincipalComponent implements OnInit {
     .filter((route) => route && route.path)
     .filter((route) => !route.path?.includes('**'))
     .filter((route) => !route.path?.includes('trabajadores'))
+    .filter((route) => !route.path?.includes('informes'))
     .map((route) => ({
       path: route.path,
       title: route.title,
@@ -63,7 +64,8 @@ export default class PrincipalComponent implements OnInit {
     'lni lni-bubble',
     'lni lni-user',
     'lni lni-pencil-alt',
-    'lni lni-users'
+    'lni lni-users',
+    'lni lni-stats-down'
   ];
 
   public combinedMenuItems: any[] = [];

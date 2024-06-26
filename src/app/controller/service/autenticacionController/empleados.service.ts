@@ -61,4 +61,14 @@ export class EmpleadosService {
     return this.http.get<Empleados[]>(`${BASE_URL}/empleados/empleadosMostrar`)
   }
 
+
+  actualizarEmpleado(empleado: Empleados): Observable<void> {
+    return this.http.put<void>(`${BASE_URL}/empleados/actualizarEmpleados/${empleado.EmpleadoCodigo}`, empleado);
+  }
+
+
+  mostrarCargos(): Observable<any[]> {
+    return this.http.get<any[]>(`${BASE_URL}/empleados/cargos`);
+  }
+
 }
