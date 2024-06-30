@@ -18,9 +18,11 @@ import { Empleados } from '../../../model/interface/empleados';
 export default class PerfilComponent implements OnInit { 
   authservice = inject(AuthService);
   private _router = inject(Router);
+
   private empleadosService = inject(EmpleadosService);
   empleados: Empleados[] = [];
-
+  currentUser: any;
+  photoURL: string | null = null;
 
   ngOnInit() {
     this.empleadosService.getEmpleados().subscribe({
@@ -31,6 +33,16 @@ export default class PerfilComponent implements OnInit {
       error: (error) => {
         console.error('Error al obtener la lista de empleados', error);
       }
+    });
+    this.obteerUsuarioActual();
+  }
+
+  obteerUsuarioActual() {
+    this.authservice.user$.subscribe((user) => {
+      this.currentUser = user;
+      console.log('Usuario actual desde la ventana principal:',this.currentUser);
+      this.photoURL = this.currentUser.photoURL;
+   
     });
   }
 

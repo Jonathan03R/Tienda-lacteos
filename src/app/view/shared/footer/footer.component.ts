@@ -22,13 +22,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </div> -->
 
       <div class="row">
-        <ul>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Our Services</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Career</a></li>
-        </ul>
+        <h5>Asociacion de productores:</h5>
+        <p>Descubre la frescura y calidad de nuestros productos lácteos, hechos con el mayor cuidado para ofrecerte el mejor sabor y nutrición.</p>
       </div>
 
       <div class="text-center">

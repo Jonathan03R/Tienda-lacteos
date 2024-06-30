@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { BASE_URL } from '../../../app.config';
 import { HttpClient } from '@angular/common/http';
 import { Categoria, Inventario } from '../../../model/interface/inventario';
+import{tipoproducto}from '../../../model/interface/Productos';
 import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,8 @@ export class InventarioService {
   obtenerCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${BASE_URL}/company/ObtenerCategorias`);
   }
-
+  
+  agregartipoProducto(categorias: tipoproducto): Observable<any> {
+    return this.http.post(`${BASE_URL}/company/agregar-tipo-producto`, categorias);
+  }
 }

@@ -13,8 +13,8 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ChatbotService } from '../../../../controller/service/chatbot.service';
 import { io, Socket } from 'socket.io-client';
+import { ChatService } from '../../../../controller/service/pedidos/chat.service';
 
 @Component({
   selector: 'app-mini-chat',
@@ -27,20 +27,21 @@ import { io, Socket } from 'socket.io-client';
 export class MiniChatComponent implements OnInit {
   @Input() isVisible: boolean = false;
   userInput: string = '';
+  dniInput: string = '';
+  dni: string | null = null;
   messages: { text: string; user: boolean }[] = [];
   presetMessages: string[] = ['Hola', 'Necesito ayuda', 'Gracias'];
 
   @ViewChild('messageContainer') messageContainer!: ElementRef;
-  
+
   constructor(
-    private chatbotService: ChatbotService,
+    private chatService: ChatService,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
+
   ngOnInit(): void {
-    this.chatbotService.connect();
-    this.chatbotService.register('client');
-    this.chatbotService.receiveMessages().subscribe((data: any) => {
-      this.messages.push({ text: data.reply, user: false });
+    this.chatService.onEmployeeMessage().subscribe((message: any) => {
+      this.messages.push({ text: message.mensaje, user: false });
       this.changeDetectorRef.detectChanges();
       this.scrollToBottom();
     });
@@ -50,30 +51,52 @@ export class MiniChatComponent implements OnInit {
     this.isVisible = false;
   }
 
-  sendPresetMessage(message: string): void {
+  submitDni() {
+    if (this.dniInput.trim()) {
+      this.dni = this.dniInput;
+      this.chatService.joinChat(this.dni);
+      this.loadMessages();
+    }
+  }
+
+  sendMessage() {
+    if (this.userInput.trim()) {
+      this.messages.push({ text: this.userInput, user: true });
+      this.chatService.sendClientMessage(this.dni!, this.userInput);
+      this.userInput = '';
+      this.changeDetectorRef.detectChanges();
+      this.scrollToBottom();
+    }
+  }
+
+  sendPresetMessage(message: string) {
     this.messages.push({ text: message, user: true });
-    this.chatbotService.sendMessage(message);
+    this.chatService.sendClientMessage(this.dni!, message);
     this.changeDetectorRef.detectChanges();
     this.scrollToBottom();
   }
 
-  sendMessage() {
-    if (this.userInput.trim() !== '') {
-      const messageToSend = this.userInput;
-      this.userInput = '';
-      this.messages.push({ text: messageToSend, user: true });
-      this.chatbotService.sendMessage(messageToSend);
-      this.changeDetectorRef.detectChanges();
-      this.scrollToBottom();
+  loadMessages() {
+    if (this.dni) {
+      this.chatService.getMessages(this.dni).subscribe((messages: any) => {
+        console.log("mensajes cargados ", messages )
+        this.messages = messages.map((msg: any) => ({
+          text: msg.mensajesTexto,
+          user: msg.user,
+        }));
+        this.changeDetectorRef.detectChanges();
+        this.scrollToBottom();
+      });
     }
   }
 
   scrollToBottom(): void {
     try {
       setTimeout(() => {
-        this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+        this.messageContainer.nativeElement.scrollTop =
+          this.messageContainer.nativeElement.scrollHeight;
       }, 0);
-    } catch(err) {
+    } catch (err) {
       console.error('Scroll to bottom failed:', err);
     }
   }

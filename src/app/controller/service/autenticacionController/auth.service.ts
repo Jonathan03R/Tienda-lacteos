@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Auth, authState, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPopup } from '@angular/fire/auth';
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   getAuth,
@@ -24,6 +24,7 @@ export class AuthService {
   // firestore = inject(AngularFirestore);
   router = inject(Router);
   private empleadosService = inject(EmpleadosService);
+
 
   constructor() {
 
@@ -54,34 +55,15 @@ export class AuthService {
 
    iniciarSesionConGoogle() {
      const provider = new GoogleAuthProvider();
-     return signInWithRedirect(this.auth, provider);
+     return signInWithPopup(this.auth, provider);
+    //  return signInWithRedirect(this.auth, provider);
    }
-
-
-
-   async handleGoogleRedirect(): Promise<string | null> {
-    try {
-      const result = await getRedirectResult(this.auth);
-      if (result?.user) {
-        const email = result.user.email;
-        if (email) {
-          const empleado = await this.empleadosService.buscarEmpleadoInfo(email).toPromise();
-          if (empleado) {
-            this.empleadosService.addEmpleado(empleado);
-          }
-          return email;
-        }
-      }
-      return null;
-    } catch (error) {
-      console.error('Error handling Google redirect', error);
-      return null;
-    }
-  }
 
 
   cerrarSesion() {
     const auth = getAuth();
+    this.empleadosService.clearEmpleados();
+    // router.navigateByUrl('/login');
     return signOut(auth);
   }
 

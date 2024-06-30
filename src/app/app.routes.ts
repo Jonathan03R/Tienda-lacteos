@@ -9,8 +9,8 @@ export const routes: Routes = [
         children: [
             {path: 'home' , loadComponent:() => import('./view/pages/inicio/inicio.component'), title: 'Inicio' },
             {path: 'products' , loadComponent: ()=> import('./view/pages/productos/productos.component'), title: 'Productos' },
-            {path: 'Favorites' , loadComponent: ()=> import('./view/pages/favoritos/favoritos.component'), title: 'Favoritos' },
-            {path: 'envios' , loadComponent: () => import('./view/pages/envios/envios.component'), title: 'Envios' },
+            // {path: 'Favorites' , loadComponent: ()=> import('./view/pages/favoritos/favoritos.component'), title: 'Favoritos' },
+            {path: 'envios' , loadComponent: () => import('./view/pages/envios/envios.component'), title: 'Pedidos' },
             
             { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/dashboard/home', pathMatch: 'full' }
@@ -27,6 +27,8 @@ export const routes: Routes = [
             {path: 'consultas', loadComponent:() => import ('./view/admin/pages/consultas/consultas.component'), title: 'Chats ' },
             {path: 'perfil', loadComponent:() => import('./view/shared/Perfil/Perfil.component'),  title: 'Perfil'},
             {path: 'historial', loadComponent:() => import('./view/admin/pages/Historial/Historial.component'), title: 'Historial' },
+            {path: 'trabajadores', loadComponent: () => import ('./view/admin/pages/trabajadores/trabajadores.component'), title: 'Trabajadores' },
+            {path: 'informes', loadComponent: () => import ('./view/admin/pages/informes/informes.component') , title: 'Informes' },
             { path: '', redirectTo: '/Empresa/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/Empresa/home', pathMatch: 'full' }
         ]

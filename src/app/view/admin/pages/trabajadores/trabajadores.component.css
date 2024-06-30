@@ -1,0 +1,26 @@
+/* trabajadores.component.css */
+
+.container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.thead-dark th {
+  background-color: #0e2238;
+  color: #fff;
+}
+
+.select-custom {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}

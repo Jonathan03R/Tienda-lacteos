@@ -9,4 +9,7 @@ export interface Productos {
     Producto_TipoProductoCodigo: string;
     quantity?: number;
 }
-
+export interface tipoproducto{
+    TipoProductoNombre: string;
+    TipoProductoDescripcion: string;
+}
