@@ -33,6 +33,7 @@ export default class InicioComponent {
 
   ventasOptions: ChartOptions<'bar'> = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         type: 'category', 
