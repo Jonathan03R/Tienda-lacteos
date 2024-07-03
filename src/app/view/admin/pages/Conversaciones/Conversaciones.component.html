@@ -1,0 +1,32 @@
+<!-- 
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Empleados</h2>
+        <div class="list-group">
+          <a  *ngFor="let empleado of empleados" class="list-group-item list-group-item-action" (click)="seleccionarEmpleado(empleado)">
+            {{ empleado.Empleadonombre }} {{ empleado.Empleadoapellidos }} <br>
+            <small>{{ empleado.Empleadoemail }}</small>
+          </a>
+        </div>
+      </div>
+  
+      <div class="col-md-8" *ngIf="selectedEmpleado">
+        <h3>Historial de Chats</h3>
+        <div *ngFor="let cliente of historialClientes" class="card mb-3">
+          <div class="card-header" (click)="seleccionarCliente(cliente)">
+            Conversaciones con {{ cliente.ClienteDNI }}
+          </div>
+          <ul class="list-group list-group-flush" *ngIf="selectedCliente === cliente">
+            <li class="list-group-item" *ngFor="let mensaje of cliente.mensajes">
+              <strong>{{ mensaje.mensajestimestamp | date:'short' }}:</strong>
+              {{ mensaje.user ? 'Cliente' : 'Empleado' }} dice: {{ mensaje.mensajesTexto }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+
+   <router-outlet></router-outlet>

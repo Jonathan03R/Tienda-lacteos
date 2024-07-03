@@ -34,6 +34,7 @@ export default class PrincipalComponent implements OnInit {
   currentUser: any;
   cargo: string | null = null;
   empleado: Empleados | null = null;
+  isConversacionesExpanded = false;
 
   public menuItems = routes
     .filter((route) => route.path === 'Empresa')
@@ -42,6 +43,7 @@ export default class PrincipalComponent implements OnInit {
     .filter((route) => !route.path?.includes('**'))
     .filter((route) => !route.path?.includes('trabajadores'))
     .filter((route) => !route.path?.includes('informes'))
+    .filter((route) => !route.path?.includes('conversaciones-gestor'))
     .map((route) => ({
       path: route.path,
       title: route.title,
@@ -57,6 +59,18 @@ export default class PrincipalComponent implements OnInit {
       title: route.title,
     }));
 
+
+    public subMenuConversaciones = (
+      routes
+        .find(route => route.path === 'Empresa')?.children
+        ?.find(child => child.path === 'conversaciones-gestor')?.children
+        ?.filter(route => route && route.path && !route.path.includes('**'))
+        ?.map(route => ({
+          path: route.path,
+          title: route.title,
+        })) 
+    ) || [];
+
   public iconItems = [
     'lni lni-home',
     'lni lni-dropbox',
@@ -65,12 +79,14 @@ export default class PrincipalComponent implements OnInit {
     'lni lni-user',
     'lni lni-pencil-alt',
     'lni lni-users',
-    'lni lni-stats-down'
+    'lni lni-stats-down',
+    'lni lni-comments'
   ];
 
   public combinedMenuItems: any[] = [];
 
   ngOnInit(): void {
+    console.log(this.subMenuConversaciones);
     this.authService.user$.subscribe((user) => {
       this.currentUser = user;
       console.log(
@@ -123,5 +139,10 @@ export default class PrincipalComponent implements OnInit {
     hamBurger.addEventListener('click', function () {
       document.querySelector('#sidebar')?.classList.toggle('expand');
     });
+  }
+
+
+  toggleConversaciones() {
+    this.isConversacionesExpanded = !this.isConversacionesExpanded;
   }
 }

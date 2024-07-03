@@ -29,6 +29,14 @@ export const routes: Routes = [
             {path: 'historial', loadComponent:() => import('./view/admin/pages/Historial/Historial.component'), title: 'Historial' },
             {path: 'trabajadores', loadComponent: () => import ('./view/admin/pages/trabajadores/trabajadores.component'), title: 'Trabajadores' },
             {path: 'informes', loadComponent: () => import ('./view/admin/pages/informes/informes.component') , title: 'Informes' },
+            {path: 'conversaciones-gestor', loadComponent: () => import ('./view/admin/pages/Conversaciones/Conversaciones.component'), title: 'Conversaciones',  
+                children : [
+                    {path: 'listar-conversacion', loadComponent: () => import ('./view/admin/pages/Conversaciones/listar-conversacion/listar-conversacion.component'), title: 'Todas las Conversaciones' },
+                    {path: 'busquedad-conversacion', loadComponent: () => import ('./view/admin/pages/Conversaciones/buscar-conversacion/buscar-conversacion.component'), title: 'Buscar Conversaciones' },
+                    { path: '', redirectTo: '/Empresa/conversaciones-gestor/listar-conversacion', pathMatch: 'full' },
+                    { path: '**', redirectTo: '/Empresa/conversaciones-gestor/listar-conversacion', pathMatch: 'full' }                 
+                ]
+             },
             { path: '', redirectTo: '/Empresa/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/Empresa/home', pathMatch: 'full' }
         ]

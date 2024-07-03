@@ -1,0 +1,42 @@
+<!-- listar-conversacion.component.html -->
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Empleados</h2>
+      <div class="list-group employee-list">
+        <a *ngFor="let empleado of empleados" class="list-group-item list-group-item-action" (click)="seleccionarEmpleado(empleado)">
+          <div>
+            <strong>{{ empleado.Empleadonombre }} {{ empleado.Empleadoapellidos }}</strong>
+          </div>
+          <small>{{ empleado.Empleadoemail }}</small>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-8" *ngIf="selectedEmpleado">
+      <h3>Historial de Chats</h3>
+      <div *ngFor="let cliente of historialClientes" class="card mb-3">
+        <div class="card-header" (click)="seleccionarCliente(cliente)">
+          <strong>Conversaciones con {{ cliente.ClienteDNI }}</strong>
+        </div>
+        <div class="card-body message-list" *ngIf="selectedCliente === cliente">
+          <ul class="list-unstyled">
+            <li class="media mb-3" *ngFor="let mensaje of cliente.mensajes">
+              <div class="media-body">
+                <div [ngClass]="{ 'text-end': mensaje.user === 0, 'text-start': mensaje.user === 1 }">
+                  <div class="message">
+                    <div class="message-text p-2">
+                      {{ mensaje.mensajesTexto }}
+                    </div>
+                    <div class="text-muted small">{{ mensaje.mensajestimestamp | date:'short' }} - {{ mensaje.user ? 'Cliente' : 'Empleado' }}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

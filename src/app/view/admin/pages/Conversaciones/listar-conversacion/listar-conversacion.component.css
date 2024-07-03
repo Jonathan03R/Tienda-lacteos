@@ -1,0 +1,36 @@
+/* listar-conversacion.component.css */
+
+.employee-list a:hover {
+  background-color: #f8f9fa !important; /* A lighter grey as hover background */
+}
+
+.card-header {
+  cursor: pointer;
+}
+
+.card-header:hover {
+  background-color: #e9ecef; /* Bootstrap light grey for hover */
+}
+
+.message-list {
+  max-height: 400px; /* Ajusta esto según tus necesidades */
+  overflow-y: auto;
+}
+
+.message {
+  max-width: 80%;
+  display: inline-block;
+}
+
+.message-text {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.message.text-end .message-text {
+  background-color: #d1ecf1;
+}
+
+.message.text-start .message-text {
+  background-color: #e2e3e5;
+}

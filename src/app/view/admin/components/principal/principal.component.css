@@ -140,3 +140,27 @@ a.sidebar-link:hover {
     transform: rotate(45deg);
     transition: all .2s ease-out;
 }
+
+/* .sidebar-link.active,
+.sidebar-link.active i,
+.sidebar-link.active span {
+    color: #fff; 
+    background-color: #3b7ddd; 
+
+} */
+
+a.sidebar-link:active, .sidebar-link.active, .sidebar-dropdown {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+/* .sidebar-dropdown {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+  }
+  
+  .sidebar-item.expanded .sidebar-dropdown {
+    max-height: 300px; 
+  }
+   */

@@ -1,0 +1,23 @@
+/* buscar-conversacion.component.css */
+
+.chat-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message .card {
+  display: inline-block;
+  max-width: 80%;
+}
+
+.chat-message.text-end .card {
+  background-color: #e2f7cb;
+}
+
+.chat-message.text-start .card {
+  background-color: #f1f0f0;
+}

@@ -11,35 +11,23 @@
         <ul class="sidebar-nav">
             @for (item of combinedMenuItems; track $index) {
             <li class="sidebar-item" style="cursor: pointer;">
-                <a class="sidebar-link d-flex align-items-center" [routerLink]="item.path" routerLinkActive="active">
+                <a class="sidebar-link d-flex align-items-center"
+                    (click)="item.title === 'Conversaciones' ? toggleConversaciones() : null" [routerLink]="item.path"
+                    routerLinkActive="active">
                     <i class="{{item.icon}}"></i>
                     <span>{{item.title}}</span>
 
                 </a>
-            </li>
-            }
-            <!-- <li class="sidebar-item">
-                <a class="sidebar-link">
-                    <i class="lni lni-user"></i>
-                    <span>Perfil</span>
-                </a>
-            </li> -->
-            <!-- <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth"
-                    aria-expanded="false" aria-controls="auth">
-                    <i class="lni lni-protection"></i>
-                    <span>Auth</span>
-                </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Login</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Register</a>
+                <ul *ngIf="isConversacionesExpanded && item.title === 'Conversaciones'" class="sidebar-dropdown">
+                    <li *ngFor="let subItem of subMenuConversaciones; let j = index" class="sidebar-item">
+                        <a class="sidebar-link"
+                            [routerLink]="['/Empresa/conversaciones-gestor', subItem.path]" routerLinkActive="active">
+                            {{subItem.title}}
+                        </a>
                     </li>
                 </ul>
-            </li> -->
-
+            </li>
+            }
         </ul>
         <div class="sidebar-footer">
             <a class="sidebar-link" (click)="cerrarSesion()">
@@ -52,8 +40,3 @@
         <router-outlet />
     </div>
 </div>
-<!-- 
-<app-nav-bar-admin/>
-
-
-<app-flooter></app-flooter> -->

@@ -1,0 +1,63 @@
+<!-- buscar-conversacion.component.html -->
+
+<div class="container my-4">
+    <div class="card">
+      <div class="card-header">
+        <h2>Buscar Conversaciones</h2>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="searchType" class="form-label">Buscar por:</label>
+          <select id="searchType" [(ngModel)]="searchType" class="form-select">
+            <option value="dni">DNI del Cliente</option>
+            <option value="codigoEmpleado">Código del Empleado</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="searchValue" class="form-label">Valor de Búsqueda:</label>
+          <input type="text" id="searchValue" [(ngModel)]="searchValue" placeholder="Ingrese DNI o Código de Empleado" class="form-control">
+        </div>
+        <button (click)="buscarConversacion()" class="btn btn-primary w-100">Buscar</button>
+      </div>
+    </div>
+  
+    <div *ngIf="clienteConEmpleado" class="card mt-4">
+      <div class="card-header">
+        <h4>Cliente: {{ clienteConEmpleado.ClienteDNI }}</h4>
+        <h5>Empleado: {{ clienteConEmpleado.Empleado.Empleadonombre }} {{ clienteConEmpleado.Empleado.Empleadoapellidos }}</h5>
+      </div>
+      <div class="card-body chat-container">
+        <ul class="list-unstyled">
+          <li *ngFor="let mensaje of clienteConEmpleado.Mensajes" [ngClass]="{ 'text-end': mensaje.user === 0, 'text-start': mensaje.user === 1 }" class="chat-message">
+            <div class="card">
+              <div class="card-body">
+                {{ mensaje.mensajesTexto }}
+                <div class="text-muted small">{{ mensaje.mensajestimestamp | date:'short' }}</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <div *ngIf="historialClientes.length > 0" class="mt-4">
+      <div *ngFor="let cliente of historialClientes" class="card mb-4">
+        <div class="card-header">
+          <h4>Cliente: {{ cliente.ClienteDNI }}</h4>
+        </div>
+        <div class="card-body chat-container">
+          <ul class="list-unstyled">
+            <li *ngFor="let mensaje of cliente.mensajes" [ngClass]="{ 'text-end': mensaje.user === 0, 'text-start': mensaje.user === 1 }" class="chat-message">
+              <div class="card">
+                <div class="card-body">
+                  {{ mensaje.mensajesTexto }}
+                  <div class="text-muted small">{{ mensaje.mensajestimestamp | date:'short' }}</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
