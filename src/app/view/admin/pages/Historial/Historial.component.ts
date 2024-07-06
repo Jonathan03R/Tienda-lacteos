@@ -42,9 +42,9 @@ export default class HistorialComponent implements OnInit{
   
   
   ngOnInit(): void {
-
-    this.historialInventarioService.actualizarHistorial();
-    this.historial = this.historialInventarioService.getHistorial();
+    // this.historialInventarioService.actualizarHistorial();
+    this.CargarHistorial()
+    // this.historial = this.historialInventarioService.getHistorial();
     this.HistorialPedido();
 
   }
@@ -58,12 +58,16 @@ export default class HistorialComponent implements OnInit{
     // }
     
   }
-
- 
-
-  Historial(){
-    this.historialInventarioService.actualizarHistorial();
-    this.activarFiltros()
+  CargarHistorial(): void {
+    this.historialInventarioService.cargarHistorial().subscribe(
+      (data) => {
+        this.historial = data;
+        this.cdr.markForCheck();
+      },
+      (error) => {
+        console.error('Error al cargar historial de inventario:', error);
+      }
+    );
   }
 
 

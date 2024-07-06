@@ -19,8 +19,8 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this._productosService.actualizarProductos();
-    this._inventario.actualizarInventario();
-    this._historial.actualizarHistorial();
+    // this._inventario.actualizarInventario();
+    // this._historial.actualizarHistorial();
   }
 
 }

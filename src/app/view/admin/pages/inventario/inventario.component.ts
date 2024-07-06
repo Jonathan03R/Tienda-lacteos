@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -42,8 +43,8 @@ export default class InventarioComponent implements OnInit {
   filterProperty: string = '';
 
   alertMessage: string | null = null;
-
   constructor(
+    private cdr : ChangeDetectorRef,
     private fb: FormBuilder,
     private inventarioService: InventarioService,
     private renderer: Renderer2,
@@ -82,6 +83,7 @@ export default class InventarioComponent implements OnInit {
 
     this.inventarioService.obtenerInventario().subscribe((inventario) => {
       this.productosFiltrados = inventario; // Inicializar con todos los productos
+      this.cdr.markForCheck();
     });
     // this.inventario = this._servicioInvetario.obtenerInventario();
   }
@@ -104,6 +106,7 @@ export default class InventarioComponent implements OnInit {
     this.inventarioService.obtenerCategorias().subscribe(
       (data) => {
         this.categorias = data;
+        this.cdr.markForCheck();
       },
       (error) => {
         console.error('Error al cargar categorías:', error);
@@ -149,6 +152,7 @@ export default class InventarioComponent implements OnInit {
         });
         // Actualizar la lista de categorías
         this.cargarCategorias();
+        this.cdr.markForCheck();
         this.categoriaForm.reset();
       },
       error: (error) => {
@@ -180,6 +184,7 @@ export default class InventarioComponent implements OnInit {
       (response) => {
         console.log('Producto agregado:', response);
         this.inventarioService.actualizarInventario();
+        this.cdr.markForCheck();
         this.productForm.reset();
         this.resetFileInput();
         alert('Producto agregado')
@@ -204,6 +209,7 @@ export default class InventarioComponent implements OnInit {
           (response) => {
            // console.log('Producto actualizado:', response);
             this.inventarioService.actualizarInventario();
+            this.cdr.markForCheck();
             // this.snackBar.open('El producto se actualizo!.', 'Cerrar', {
             //   duration: 3000,
               
