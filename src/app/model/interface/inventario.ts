@@ -5,13 +5,16 @@ export interface Inventario {
   ProductoPrecio: number;
   ProductoCantidad: number;
   ProductoFoto: string;
-  Categoria: string; // Este es el campo AS Categoria en la consulta SQL
-  Producto_TipoProductoCodigo: number; // Añadir este campo
+  Categoria: string; 
+  Producto_TipoProductoCodigo: number; 
 }
 
 export interface InventoryHistory {
   ProductoCodigo: number;
   ProductoNombre: string;
+  CampoModificado: string;
+  ValorAnterior: string;
+  ValorNuevo: string;
   FechaCambio: string;
   TipoCambio: number;
 }
