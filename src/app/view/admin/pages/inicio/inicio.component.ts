@@ -7,12 +7,13 @@ import { Chart } from 'chart.js';
 import { DashboardService } from '../../../../controller/service/informes/dashboard.service';
 import { Empleados } from '../../../../model/interface/empleados';
 import { EmpleadosService } from '../../../../controller/service/autenticacionController/empleados.service';
+import { RouterModule } from '@angular/router';
 
 Chart.register(...registerables);
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, BaseChartDirective],
+  imports: [CommonModule, BaseChartDirective, RouterModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
