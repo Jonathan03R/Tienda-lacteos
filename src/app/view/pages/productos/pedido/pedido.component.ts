@@ -6,6 +6,9 @@ import { PedidoRequest } from '../../../../model/interface/pedidos';
 import { CarritoServiceService } from '../../../../controller/service/carrito/CarritoService.service';
 import { Productos } from '../../../../model/interface/Productos';
 import { Router, RouterModule } from '@angular/router';
+import { ClienteInfoService } from '../../../../controller/service/pedidos/clienteInfo.service';
+import { ClienteInfo } from '../../../../model/interface/cliente-info';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pedido',
@@ -17,11 +20,14 @@ import { Router, RouterModule } from '@angular/router';
 })
 export default class PedidoComponent implements OnInit {
   productosCarrito: Productos[] = [];
+  clienteInfo: ClienteInfo | null = null;
 
   constructor(
     private pedidosService: PedidosService,
     private carritoService: CarritoServiceService,
-    private _routes: Router
+    private _routes: Router,
+    private clienteInfoService: ClienteInfoService,
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -62,23 +68,33 @@ export default class PedidoComponent implements OnInit {
 
       this.pedidosService.crearPedido(pedidoRequest).subscribe(
         (response) => {
-          console.log('Pedido creado:', response);
+          // console.log('Pedido creado:', response);
 
           pedidoForm.resetForm();
 
           this.carritoService.vaciarCarrito();
-
-          alert('¡El pedido ha sido registrado exitosamente!');
+          this.snackBar.open('¡El pedido ha sido registrado exitosamente!', 'Cerrar', {
+            duration: 2000,
+            verticalPosition: 'top'
+          });
+          // alert('¡El pedido ha sido registrado exitosamente!');
           this._routes.navigate(['/dashboard/envios']);
         },
         (error) => {
-          console.error('Error al crear pedido:', error);
+          // console.error('Error al crear pedido:', error);
+          this.snackBar.open('Error al crear el pedido. Por favor, inténtelo de nuevo.', 'Cerrar', {
+            duration: 3000,
+            verticalPosition: 'top'
 
-          alert('Error al crear el pedido. Por favor, inténtelo de nuevo.');
+          });
         }
       );
     } else {
-      alert('Por favor, complete todos los campos requeridos correctamente.');
+      this.snackBar.open('Por favor, complete todos los campos requeridos correctamente.', 'Cerrar', {
+        duration: 3000,
+        // horizontalPosition: 'start,'
+        verticalPosition: 'top'
+      });
     }
   }
 
@@ -108,5 +124,38 @@ export default class PedidoComponent implements OnInit {
       DetallePedidoCantidad: producto.quantity!,
       DetallePedidoSubtotal: producto.ProductoPrecio * producto.quantity!,
     }));
+  }
+
+  buscarCliente(form: NgForm) {
+    const dni = form.value.dni;
+    if (!dni) {
+      // alert('Por favor, ingrese un DNI.');
+      this.snackBar.open('Por favor, ingrese un DNI.', 'Cerrar', {
+        duration: 3000,
+        // horizontalPosition: 'start,'
+        verticalPosition: 'top'
+      });
+      return;
+    }
+    
+    this.clienteInfoService.buscarClienteInfo({ ClienteDni: dni }).subscribe(
+      (response: ClienteInfo) => {
+        this.clienteInfo = response;
+        form.controls['nombre'].setValue(this.clienteInfo.ClienteNombre);
+        form.controls['apellido'].setValue(this.clienteInfo.ClienteApellidos);
+        form.controls['direccion'].setValue(this.clienteInfo.ClienteDireccion);
+        form.controls['telefono'].setValue(this.clienteInfo.ClienteTelefono);
+        form.controls['correo'].setValue(this.clienteInfo.ClienteEmail);
+      },
+      (error) => {
+        // console.error('Error al buscar el cliente:', error);
+        this.snackBar.open('DNI no encontrado. Ingrese los datos manualmente.', 'Cerrar', {
+          duration: 3000,
+          // horizontalPosition: 'start,'
+          verticalPosition: 'top'
+        });
+        // alert('DNI no encontrado. Ingrese los datos manualmente.');
+      }
+    );
   }
 }

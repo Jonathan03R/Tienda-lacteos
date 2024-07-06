@@ -202,12 +202,18 @@ export default class InventarioComponent implements OnInit {
         })
         .subscribe(
           (response) => {
-            console.log('Producto actualizado:', response);
+           // console.log('Producto actualizado:', response);
             this.inventarioService.actualizarInventario();
+            // this.snackBar.open('El producto se actualizo!.', 'Cerrar', {
+            //   duration: 3000,
+              
+            // });
+            alert("El producto se actualizo!")
             document.getElementById('editModal')?.click();
           },
           (error) => {
             console.error('Error al actualizar el producto:', error);
+            alert("a ocurrido un error al actualizar el producto!")
           }
         );
     }

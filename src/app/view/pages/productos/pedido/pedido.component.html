@@ -12,26 +12,40 @@
                 <div class="mb-4">
                     <div class="input-group ">
                         <span class="input-group-text" id="basic-addon1">Dni</span>
-                        <input type="text" class="form-control" id="dni" name="dni" ngModel pattern="^[0-9]*$" minlength="8"
-                            aria-label="Username" aria-describedby="basic-addon1" required>
+                        <input type="text" class="form-control" id="dni" name="dni" ngModel pattern="^[0-9]*$"
+                            minlength="8" maxlength="8" aria-label="Username" aria-describedby="basic-addon1" required>
+                        <button class="btnBuscarDni" type="button" (click)="buscarCliente(pedidoForm)">
+                            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
+                                aria-labelledby="search">
+                                <path
+                                    d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                                    stroke="currentColor" stroke-width="1.333" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                </path>
+                            </svg>
+                        </button>
                     </div>
-                    <div *ngIf="pedidoForm.controls['dni']?.errors?.['pattern']" class="text-danger">El DNI debe contener
+                    <div *ngIf="pedidoForm.controls['dni']?.errors?.['pattern']" class="text-danger">El DNI debe
+                        contener
                         solo números.</div>
-                    <div *ngIf="pedidoForm.controls['dni']?.errors?.['minlength']" class="text-danger">El DNI debe tener al
-                        menos 8 caracteres.</div>
+                    <div *ngIf="(pedidoForm.controls['dni']?.errors?.['minlength'] || pedidoForm.controls['dni']?.errors?.['maxlength']) && pedidoForm.controls['dni'].touched"
+                        class="text-danger">El DNI debe tener exactamente 8 caracteres.</div>
                     <div *ngIf="pedidoForm.controls['dni']?.errors?.['required'] && pedidoForm.controls['dni'].touched"
                         class="text-danger">El DNI es obligatorio.</div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
-                        <span class="input-group-text">Nombres y Apellidos</span>
+                        <span class="input-group-text">Nombres</span>
                         <input type="text" id="nombre" name="nombre" aria-label="nombres" class="form-control" ngModel
                             required>
-                        <input type="text" id="apellido" name="apellido" aria-label="apellidos" class="form-control" ngModel
-                            required>
+                        <span class="input-group-text ms-2 " id="basic-addon1">apellido</span>
+                        <input type="text" id="apellido" name="apellido" aria-label="apellidos" class="form-control"
+                            ngModel required appPopover="Por favor, ingrese su apellido." title="Campo obligatorio">
                     </div>
-                    <div *ngIf="pedidoForm.controls['nombre']?.errors?.['required'] && pedidoForm.controls['nombre'].touched" class="text-danger">Ingrese su nombre</div>
-                    <div *ngIf="pedidoForm.controls['apellido']?.errors?.['required'] && pedidoForm.controls['apellido'].touched" class="text-danger">Ingrese su apellid</div>
+                    <div *ngIf="pedidoForm.controls['nombre']?.errors?.['required'] && pedidoForm.controls['nombre'].touched"
+                        class="text-danger">Ingrese su nombre</div>
+                    <div *ngIf="pedidoForm.controls['apellido']?.errors?.['required'] && pedidoForm.controls['apellido'].touched"
+                        class="text-danger">Ingrese su apellida</div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
@@ -40,17 +54,21 @@
                             ngModel required>
                     </div>
 
-                    <div *ngIf="pedidoForm.controls['direccion']?.errors?.['required'] && pedidoForm.controls['direccion'].touched" class="text-danger">La dirección es obligatoria.</div>
+                    <div *ngIf="pedidoForm.controls['direccion']?.errors?.['required'] && pedidoForm.controls['direccion'].touched"
+                        class="text-danger">La dirección es obligatoria.</div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
                         <span class="input-group-text">Telefono</span>
-                        <input type="tel" class="form-control" id="telefono" name="telefono" aria-label="telefono" ngModel pattern="^[0-9]*$" minlength="9"
-                            required>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" aria-label="telefono"
+                            ngModel pattern="^[0-9]*$" minlength="9" required>
                     </div>
-                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['pattern']" class="text-danger">El teléfono debe contener solo números.</div>
-                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['minlength']" class="text-danger">El teléfono debe tener al menos 9 caracteres.</div>
-                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['required'] && pedidoForm.controls['telefono'].touched" class="text-danger">El teléfono es obligatorio.</div>
+                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['pattern']" class="text-danger">El teléfono
+                        debe contener solo números.</div>
+                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['minlength']" class="text-danger">El teléfono
+                        debe tener al menos 9 caracteres.</div>
+                    <div *ngIf="pedidoForm.controls['telefono']?.errors?.['required'] && pedidoForm.controls['telefono'].touched"
+                        class="text-danger">El teléfono es obligatorio.</div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
@@ -59,8 +77,10 @@
                             required email>
                     </div>
 
-                    <div *ngIf="pedidoForm.controls['correo']?.errors?.['email']" class="text-danger">El email no es válido.</div>
-                    <div *ngIf="pedidoForm.controls['correo']?.errors?.['required'] && pedidoForm.controls['correo'].touched" class="text-danger">El email es obligatorio.</div>
+                    <div *ngIf="pedidoForm.controls['correo']?.errors?.['email']" class="text-danger">El email no es
+                        válido.</div>
+                    <div *ngIf="pedidoForm.controls['correo']?.errors?.['required'] && pedidoForm.controls['correo'].touched"
+                        class="text-danger">El email es obligatorio.</div>
                 </div>
 
                 <div class="input-group mb-4 d-flex flex-column">
@@ -89,7 +109,8 @@
                                 </span>
                             </label> -->
                         </div>
-                        <div *ngIf="pedidoForm.controls['metodoPago']?.errors?.['required'] && pedidoForm.controls['metodoPago'].touched" class="text-danger">Seleccione un método de pago.</div>
+                        <div *ngIf="pedidoForm.controls['metodoPago']?.errors?.['required'] && pedidoForm.controls['metodoPago'].touched"
+                            class="text-danger">Seleccione un método de pago.</div>
                     </div>
                 </div>
                 <button class="mt-4 btn-registrarPedido btn btn-primary" type="submit">registrar</button>

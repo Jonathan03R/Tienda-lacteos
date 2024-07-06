@@ -18,6 +18,11 @@
   font-weight: bold;
 }
 
+.btnBuscarDni
+{
+  border: none;
+}
+
 .CompraResumen {
   overflow-y: auto; 
   max-height: calc(100vh - 150px);
