@@ -38,14 +38,14 @@
                         <span class="input-group-text">Nombres</span>
                         <input type="text" id="nombre" name="nombre" aria-label="nombres" class="form-control" ngModel
                             required>
-                        <span class="input-group-text ms-2 " id="basic-addon1">apellido</span>
+                        <span class="input-group-text ms-2 " id="basic-addon1">Apellido</span>
                         <input type="text" id="apellido" name="apellido" aria-label="apellidos" class="form-control"
                             ngModel required appPopover="Por favor, ingrese su apellido." title="Campo obligatorio">
                     </div>
                     <div *ngIf="pedidoForm.controls['nombre']?.errors?.['required'] && pedidoForm.controls['nombre'].touched"
                         class="text-danger">Ingrese su nombre</div>
                     <div *ngIf="pedidoForm.controls['apellido']?.errors?.['required'] && pedidoForm.controls['apellido'].touched"
-                        class="text-danger">Ingrese su apellida</div>
+                        class="text-danger">Ingrese su apellido</div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
