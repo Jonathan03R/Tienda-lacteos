@@ -31,6 +31,7 @@ export class MiniChatComponent implements OnInit {
   dni: string | null = null;
   messages: { text: string; user: boolean }[] = [];
   presetMessages: string[] = ['Hola', 'Necesito ayuda', 'Gracias'];
+  isTyping: boolean = false;
 
   @ViewChild('messageContainer') messageContainer!: ElementRef;
 
@@ -41,7 +42,28 @@ export class MiniChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatService.onEmployeeMessage().subscribe((message: any) => {
+      this.isTyping = false;
       this.messages.push({ text: message.mensaje, user: false });
+      this.changeDetectorRef.detectChanges();
+      this.scrollToBottom();
+    });
+
+    this.chatService.onBotMessage().subscribe((message: any) => {
+      this.isTyping = false;
+      this.messages.push({ text: message.mensaje, user: false });
+      this.changeDetectorRef.detectChanges();
+      this.scrollToBottom();
+    });
+
+    this.chatService.onBotTyping().subscribe(() => {
+      this.isTyping = true;
+      this.changeDetectorRef.detectChanges();
+      this.scrollToBottom();
+    });
+
+    // Simula que el empleado está escribiendo
+    this.chatService.onEmployeeTyping().subscribe(() => {
+      this.isTyping = true;
       this.changeDetectorRef.detectChanges();
       this.scrollToBottom();
     });

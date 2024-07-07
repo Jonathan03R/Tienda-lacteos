@@ -73,6 +73,7 @@ export default class HistorialComponent implements OnInit{
 
   HistorialPedido() {
     this.pedidosService.listarHistoriaPedido().subscribe((data: HistorialPedido[]) =>{
+      console.log("histiral pedido:" ,data)
       this.pedidos = data;
       this.filtrarPedidosPorEstado();
       this.pedidosFiltrados = this.pedidosPendientes;

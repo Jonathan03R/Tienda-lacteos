@@ -10,7 +10,8 @@
       <div class="chat-details">
         <div class="chat-code">{{ chat.clientCode }}</div>
         <div class="chat-last-message">
-          {{ chat.messages.length ? chat.messages[chat.messages.length - 1].text : '...' }}
+          <!-- {{ chat.messages.length ? chat.messages[chat.messages.length - 1].text : '...' }} -->
+          {{ chat.lastMessagePreview }}
         </div>
       </div>
     </div>
@@ -44,6 +45,7 @@
           [(ngModel)]="workerInput"
           placeholder="Escribe un mensaje..."
           (keydown.enter)="sendMessage()"
+          (input)="onTyping()"
         />
         <button (click)="sendMessage()">Enviar</button>
       </div>

@@ -5,18 +5,21 @@
   </div>
   <div class="chat-body" #messageContainer>
     <div *ngIf="!dni">
-      <input type="text" [(ngModel)]="dniInput" placeholder="Ingrese su DNI..." />
-      <button (click)="submitDni()">Enviar n</button>
+      <input type="text" [(ngModel)]="dniInput" placeholder="Ingrese su DNI..." maxlength="8"/>
+      <button (click)="submitDni()">Enviar</button>
     </div>
     <div *ngIf="dni">
       <div class="preset-messages">
-        <button *ngFor="let preset of presetMessages">
+        <button *ngFor="let preset of presetMessages" (click)="sendPresetMessage(preset)" >
           {{ preset }}
         </button>
       </div>
       <div class="messages">
         <div *ngFor="let message of messages" [ngClass]="{'user-message': message.user, 'bot-message': !message.user}">
           {{ message.text }}
+        </div>
+        <div *ngIf="isTyping" class="typing-indicator">
+          <span></span><span></span><span></span>
         </div>
       </div>
     </div>

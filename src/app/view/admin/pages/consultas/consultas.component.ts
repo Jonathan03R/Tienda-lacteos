@@ -10,6 +10,7 @@ interface ClientChat {
   clientId: string;
   clientCode: string;
   messages: { text: string; user: boolean }[];
+  lastMessagePreview: string;
 }
 
 @Component({
@@ -40,7 +41,7 @@ export default class ConsultasComponent implements OnInit {
     this.listarEmpleadoActual();
     this.loadClientChats();
     this.chatService.onClientMessage().subscribe((message: any) => {
-      // console.log('Mensaje recibido:', message);
+      console.log('Mensaje recibido:', message);
       const chat = this.clientChats.find(chat => chat.clientId === message.dni);
 
       if (chat) {
@@ -48,11 +49,13 @@ export default class ConsultasComponent implements OnInit {
         // console.log('Mensaje agregado a chat existente:', chat);
       } else {
         this.clientChats.push({
-          clientId: message.mensajesClienteDni,
-          clientCode: message.mensajesClienteDni,
-          messages: [{ text: message.mensaje, user: true }]
+          clientId: message.dni,
+          clientCode: message.dni,
+          messages: [{ text: message.mensaje, user: true }],
+          lastMessagePreview: this.truncateMessage(message.mensaje, 20)
         });
       }
+      this.updateLastMessagePreview();
       this.changeDetectorRef.markForCheck();
       this.scrollToBottom();
     });
@@ -68,10 +71,10 @@ export default class ConsultasComponent implements OnInit {
     this.empleadoService.getEmpleados().subscribe({
       next: (data) => {
         this.empleado = data;
-        console.log('Empleados data:', data);
+        // console.log('Empleados data:', data);
         if (this.empleado.length > 0) {
           this.employeeId = this.empleado[0].EmpleadoCodigo.toString(); 
-          console.log('Empleado actual:', this.empleado[0]);
+          // console.log('Empleado actual:', this.empleado[0]);
         }
       },
       error: (error) => {
@@ -82,12 +85,26 @@ export default class ConsultasComponent implements OnInit {
 
   loadClientChats() {
     this.chatService.getAllChats().subscribe((chats: any) => {
-    //  console.log('Chats recibidos loadClientChats:', chats);
+      // console.log('Chats recibidos loadClientChats:', chats);
       this.clientChats = chats.map((chat: any) => ({
         clientId: chat.mensajesClienteDni,
         clientCode: chat.mensajesClienteDni,
-        messages: []
+        messages: [],
+        lastMessagePreview: '...' 
       }));
+  
+      // Cargar los mensajes para cada chat
+      this.clientChats.forEach(chat => {
+        this.chatService.getMessages(chat.clientId).subscribe((messages: any) => {
+          chat.messages = messages.map((msg: any) => ({
+            text: msg.mensajesTexto,
+            user: msg.user
+          }));
+          this.updateLastMessagePreview();
+          this.changeDetectorRef.markForCheck();
+        });
+      });
+  
       this.changeDetectorRef.markForCheck();
     });
   }
@@ -110,8 +127,15 @@ export default class ConsultasComponent implements OnInit {
       this.chatService.sendEmployeeMessage(this.employeeId, this.workerInput, this.selectedChat.clientId);
       this.selectedChat.messages.push({ text: this.workerInput, user: false });
       this.workerInput = '';
+      this.updateLastMessagePreview(); 
       this.changeDetectorRef.markForCheck();
       this.scrollToBottom();
+    }
+  }
+
+  onTyping() {
+    if (this.selectedChat) {
+      this.chatService.emitEmployeeTyping(this.selectedChat.clientId);
     }
   }
 
@@ -135,8 +159,24 @@ export default class ConsultasComponent implements OnInit {
     try {
       this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
     } catch (err) {
-      console.error('Error al hacer scroll:', err);
+      // console.error('Error al hacer scroll:', err);
     }
+  }
+
+  private updateLastMessagePreview(): void {
+    this.clientChats.forEach(chat => {
+      if (chat.messages.length > 0) {
+        const lastMessage = chat.messages[chat.messages.length - 1];
+        // Mostrar solo mensajes de clientes en la vista previa
+        chat.lastMessagePreview = lastMessage.user ? this.truncateMessage(lastMessage.text, 20) : '...';
+      } else {
+        chat.lastMessagePreview = '...';
+      }
+    });
+  }
+
+  private truncateMessage(message: string, maxLength: number): string {
+    return message.length > maxLength ? message.substring(0, maxLength) + '...' : message;
   }
 
   // Iconos

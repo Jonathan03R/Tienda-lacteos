@@ -56,6 +56,39 @@ export class ChatService {
     });
   }
 
+  emitEmployeeTyping(dniCliente: string): void {
+    this.socket.emit('empleadoTyping', { dniCliente });
+  }
+  
+
+  // Emitir evento de bot escribiendo
+  onBotTyping(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('botTyping', () => {
+        observer.next();
+      });
+    });
+  }
+
+  // Emitir evento de empleado escribiendo
+  onEmployeeTyping(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('empleadoTyping', () => {
+        observer.next();
+      });
+    });
+  }
+
+  // Recibir mensaje del bot
+  onBotMessage(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('mensajeBot', (data) => {
+        observer.next(data);
+      });
+    });
+  }
+
+
   // Obtener todos los mensajes de un cliente
   getMessages(dni: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/chats/getMessages/${dni}`).pipe(
